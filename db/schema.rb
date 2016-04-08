@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407044143) do
+ActiveRecord::Schema.define(version: 20160408060224) do
+
+  create_table "rosters", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.boolean  "manager"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "rosters", ["team_id"], name: "index_rosters_on_team_id"
+  add_index "rosters", ["user_id"], name: "index_rosters_on_user_id"
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"

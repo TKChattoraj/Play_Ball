@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :rosters
+  has_many :teams, :through => :rosters
+
   before_save {self.email = email.downcase}
 
   validates :first_name, presence: true
