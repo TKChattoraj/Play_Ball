@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :rosters
   has_many :teams, :through => :rosters
+  has_many :notes
 
   before_save {self.email = email.downcase}
 
