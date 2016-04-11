@@ -24,7 +24,7 @@
 
 
         <%= fields_for @team do |t| %>
-          <%= form_group_tag(@user.errors[:last_name]) do %>
+          <%= form_group_tag(@team.errors[:name]) do %>
             <%= t.label :team %>
             <%= t.collection_select :id, Team.all, :id, :name, class: 'form-control'%>
           <% end %>

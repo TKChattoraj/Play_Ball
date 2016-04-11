@@ -13,4 +13,11 @@ class User < ActiveRecord::Base
             uniqueness: {case_sensitive: false}
 
   has_secure_password
+
+  def current_team
+    self.teams.order("created_at").last
+  end
+
+
+
 end

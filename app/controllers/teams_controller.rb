@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
 
 def show
   @team = Team.find(params[:id])
-  @notes = @team.note.recent
+  @notes = @team.notes.recent
 end
 
 end
