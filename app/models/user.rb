@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :rosters
   has_many :teams, :through => :rosters
+  has_many :notes
 
   before_save {self.email = email.downcase}
 
@@ -12,4 +13,11 @@ class User < ActiveRecord::Base
             uniqueness: {case_sensitive: false}
 
   has_secure_password
+
+  def current_team
+    self.teams.order("created_at").last
+  end
+
+
+
 end

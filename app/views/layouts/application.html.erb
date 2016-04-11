@@ -48,9 +48,31 @@
           <%= image_tag("CABL-BRICK-WALLA1.png", :size => "313x313") %>
         </div>
         <div class="col-md-8">
+
           <%= yield %>
+
+          <% if current_user && current_user.current_team %>
+            <div class="row">
+              <ul class="nav nav-tabs">
+
+                <li><%= link_to "To be: Add a Player", welcome_about_path %></li>
+
+                <li><%= link_to "To be: Input Game Stats", welcome_about_path %></li>
+
+                <li><%= link_to "Make a Note", new_team_note_path(current_user.current_team) %></li>
+              </ul>
+            </div>
+          <% end %>
         </div>
+
       </div>
+
+
+
+
+
+
+
   </div>
 
 </body>
