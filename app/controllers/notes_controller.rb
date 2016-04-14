@@ -11,7 +11,9 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     @note.user_id = current_user.id
-    @note.team_id = current_user.current_team.id
+    if current_user.current_team
+      @note.team_id = current_user.current_team.id # nil
+    end
 
     if @note.save
       flash[:notice] = "Note Created!"

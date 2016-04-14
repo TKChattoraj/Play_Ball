@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   before_save {self.email = email.downcase}
 
+  validates :teams, presence: true
   validates :first_name, presence: true
   validates :password, presence: true, length: {minimum: 6}, if: "password_digest.nil?"
 

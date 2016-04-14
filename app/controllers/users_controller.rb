@@ -2,21 +2,22 @@ class UsersController < ApplicationController
 
     def new
       @user = User.new
-      @team = Team.new
+      @roster = Roster.new
     end
 
     def create
-      @user = User.new
-      @user.first_name = params[:user][:first_name]
-      @user.last_name = params[:user][:last_name]
-      @user.email = params[:user][:email]
-      @user.password = params[:user][:password]
-      @user.password_confirmation = params[:user][:password_confirmation]
+      raise params.inspect
+      @user = User.new(user_params)
+      # @user.first_name = params[:user][:first_name]
+      # @user.last_name = params[:user][:last_name]
+      # @user.email = params[:user][:email]
+      # @user.password = params[:user][:password]
+      # @user.password_confirmation = params[:user][:password_confirmation]
 
       @user.save
-      @roster = Roster.new
+      @roster = Roster.new  #need to think about nested strong parameters
       @roster.user_id = @user.id
-      @roster.team_id = params[:team][:id]
+      @roster.team_id = params[:user][:roster][:team_id]
       @roster.manager = true
 
 
@@ -33,11 +34,19 @@ class UsersController < ApplicationController
     end
 
     def show
-      @user = User.find(params[:id])
-      @posts = @user.posts.visible_to(current_user)
+
     end
 
 
+private
+
+def user_params
+  params.require(:user).permit(:first_name, :last_name, :email, :password, :passwor_confirmation)
+end
+
+def roster_params
+  params.require(:user).permit({:roster =>[:team_id]} )
+end
 
 
 

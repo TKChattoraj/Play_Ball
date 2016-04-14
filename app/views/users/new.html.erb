@@ -22,14 +22,12 @@
         <%= f.text_field :last_name, autofocus: true, class: 'form-control', placeholder:"Enter last name" %>
       <% end %>
 
-
-        <%= fields_for @team do |t| %>
-          <%= form_group_tag(@team.errors[:name]) do %>
-            <%= t.label :team %>
-            <%= t.collection_select :id, Team.all, :id, :name, class: 'form-control'%>
-          <% end %>
-
+        <%= f.fields_for @user.rosters.new do |roster_form| %>
+          <%= roster_form.label :team_id %>
+          <%= roster_form.collection_select :team_id, Team.all, :id, :name, class: 'form-control'%>
         <% end %>
+
+  
 
 
       <%= form_group_tag(@user.errors[:email]) do %>
