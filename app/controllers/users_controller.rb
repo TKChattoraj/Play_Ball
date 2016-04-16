@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     end
 
     def create
-      raise params.inspect
+      #raise params.inspect
       @user = User.new(user_params)
       # @user.first_name = params[:user][:first_name]
       # @user.last_name = params[:user][:last_name]
@@ -15,10 +15,14 @@ class UsersController < ApplicationController
       # @user.password_confirmation = params[:user][:password_confirmation]
 
       @user.save
-      @roster = Roster.new  #need to think about nested strong parameters
+      # @roster = Roster.new  #need to think about nested strong parameters
+      @roster = @user.rosters.new
       @roster.user_id = @user.id
       @roster.team_id = params[:user][:roster][:team_id]
       @roster.manager = true
+
+
+
 
 
       if (@user.id && @roster.save)
@@ -41,7 +45,7 @@ class UsersController < ApplicationController
 private
 
 def user_params
-  params.require(:user).permit(:first_name, :last_name, :email, :password, :passwor_confirmation)
+  params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :cell)
 end
 
 def roster_params

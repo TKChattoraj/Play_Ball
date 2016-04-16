@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     resources :notes
   end
 
-  namespace :api, defaults: {format: :json} do
+  # namespace :api, defaults: {format: :http} do
+  namespace :api do
+    match '/texts', to: 'texts#preflight', via: [:options]
     resources :texts, only: [:create]
   end
   # The priority is based upon order of creation: first created -> highest priority.
