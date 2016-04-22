@@ -4,8 +4,12 @@ class User < ActiveRecord::Base
   has_many :notes
 
   before_save {self.email = email.downcase}
+  before_save {self.cell = cell.delete '-'}
+
+
 
   validates :first_name, presence: true
+  validates :cell, presence: true, uniqueness: {case_sensitive: false}
   validates :password, presence: true, length: {minimum: 6}, if: "password_digest.nil?"
 
   validates :email,

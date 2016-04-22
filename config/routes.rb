@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :teams
+
   get 'welcome/index'
 
   get 'welcome/about'
@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :teams do
     resources :notes
+  end
+
+  # namespace :api, defaults: {format: :http} do
+  namespace :api do
+    match '/texts', to: 'texts#preflight', via: [:options]
+    resources :texts, only: [:create]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
