@@ -4,9 +4,11 @@ class User < ActiveRecord::Base
   has_many :notes
 
   before_save {self.email = email.downcase}
-  before_save {self.cell = cell.delete '-'}
+
+  before_save {self.cell = cell.gsub(/[^\d]/, "")}
 
   cell_REGEX = /\A(\d){10}\s/
+  email_REGEX = /\A((\w)+(\.)?)*(\w)+@{1}((\w)+(\.)?)*(\w)+(\.){1}(com|io|org|biz)\z/i
 
   validates :first_name, presence: true
   validates :cell, presence: true, uniqueness: {case_sensitive: false}, format: {with: cell_REGEX}
@@ -14,7 +16,8 @@ class User < ActiveRecord::Base
 
   validates :email,
             presence: true,
-            uniqueness: {case_sensitive: false}
+            uniqueness: {case_sensitive: false},
+            format: {with email_REGEX}
 
   has_secure_password
 
