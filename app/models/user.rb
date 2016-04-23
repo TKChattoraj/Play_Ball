@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
   before_save {self.email = email.downcase}
   before_save {self.cell = cell.delete '-'}
 
-
+  cell_REGEX = /\A(\d){10}\s/
 
   validates :first_name, presence: true
-  validates :cell, presence: true, uniqueness: {case_sensitive: false}
+  validates :cell, presence: true, uniqueness: {case_sensitive: false}, format: {with: cell_REGEX}
   validates :password, presence: true, length: {minimum: 6}, if: "password_digest.nil?"
 
   validates :email,
