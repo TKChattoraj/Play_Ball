@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   before_save {self.cell = cell.gsub(/[^\d]/, "")}
 
-  cell_REGEX = /\A(\d){10}\s/
+  cell_REGEX = /\A(\d){3}\-(\d){3}\-(\d){4}\z/
   email_REGEX = /\A((\w)+(\.)?)*(\w)+@{1}((\w)+(\.)?)*(\w)+(\.){1}(com|io|org|biz)\z/i
 
   validates :first_name, presence: true
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates :email,
             presence: true,
             uniqueness: {case_sensitive: false},
-            format: {with email_REGEX}
+            format: {with: email_REGEX}
 
   has_secure_password
 
