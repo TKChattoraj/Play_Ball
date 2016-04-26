@@ -37,7 +37,7 @@ def create
   #   # ...respond with unauthorized
   # end
 
-  if @user and @user.current_team
+  if @user and @user.manager # manager method defined in User model
     @note = Note.new
     @note.content = params[:Body]
     @note.user_id = @user.id

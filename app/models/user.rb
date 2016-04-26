@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
     self.teams.order("created_at").last
   end
 
+  def manager
+    self.rosters.find_by(user_id: self.id).manager
+  end
 
 
 end
