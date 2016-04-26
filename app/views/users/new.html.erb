@@ -27,7 +27,8 @@
           <%= roster_form.collection_select :team_id, Team.all, :id, :name, class: 'form-control'%>
         <% end %>
 
-  
+
+
 
 
       <%= form_group_tag(@user.errors[:email]) do %>
@@ -36,7 +37,7 @@
       <% end %>
       <%= form_group_tag(@user.errors[:cell]) do %>
         <%= f.label :cell %>
-        <%= f.text_field :cell, class: 'form-control', placeholder: "Enter cell (xxx) 555-5555" %>
+        <%= f.text_field :cell, class: 'form-control', placeholder: "Enter cell xxx-555-5555" %>
       <% end %>
       <%= form_group_tag(@user.errors[:password]) do %>
         <%= f.label :password %>
