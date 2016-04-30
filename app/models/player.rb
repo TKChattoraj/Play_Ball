@@ -1,5 +1,9 @@
 class Player < ActiveRecord::Base
   belongs_to :team
+  has_one :hitting_total
+  has_one :pitching_total
+
+  serialize :positions, Array
 
   enum bats: [:bats_left, :bats_right]
   # will allow player.bats = 'bats_left'
@@ -9,7 +13,7 @@ end
 
 
 
-# have many positions-P, C, 1b, 2b, 3b, SS, OF
+
 # have one hitting totals-hitting totals belongs to player
 # have one pitching totals-pitching totals belongs to player
 
