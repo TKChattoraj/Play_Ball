@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430020123) do
+ActiveRecord::Schema.define(version: 20160502000834) do
 
   create_table "hitting_totals", force: :cascade do |t|
     t.integer  "g"
@@ -91,7 +91,20 @@ ActiveRecord::Schema.define(version: 20160430020123) do
     t.integer  "throws"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text     "positions"
+  end
+
+  create_table "players_positions", id: false, force: :cascade do |t|
+    t.integer "player_id",   null: false
+    t.integer "position_id", null: false
+  end
+
+  add_index "players_positions", ["player_id"], name: "index_players_positions_on_player_id"
+  add_index "players_positions", ["position_id"], name: "index_players_positions_on_position_id"
+
+  create_table "positions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rosters", force: :cascade do |t|

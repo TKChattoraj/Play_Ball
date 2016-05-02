@@ -2,10 +2,10 @@ class Player < ActiveRecord::Base
   belongs_to :team
   has_one :hitting_total
   has_one :pitching_total
+  has_and_belongs_to_many :positions
 
-  serialize :positions, Array
 
-  enum bats: [:bats_left, :bats_right]
+  enum bats: [:bats_left, :bats_right, :switch_hitter]
   # will allow player.bats = 'bats_left'
   # player.bats_left? #=> true
   enum throws: [:throws_left, :throws_right]
