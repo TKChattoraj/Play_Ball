@@ -19,7 +19,7 @@ class PitchingTotal < ActiveRecord::Base
     self.b1 = 0
     self.b2 = 0
     self.b3 = 0
-    self.hr. = 0
+    self.hr = 0
     self.k = 0
     self.wp = 0
     self.hb = 0

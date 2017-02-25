@@ -1,7 +1,6 @@
 <h1>New Player</h1>
 
-<div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
     <%= form_for [@user, @player] do |p| %>
     <div class="form-group">
       <%= p.text_field :first_name, class: 'form-control', placeholder: "First Name" %>
@@ -71,84 +70,17 @@
       <div class="form-group">
         <h3>Positions</h3>
         <row class='form-control'>
-          <div class="col-md-2">
-            <%= p.check_box :positions, "p" %>
-          </div>
-          <div class="col-md-6">
-            <%= p.label :positions, "pitcher"%>
-          </div>
-        </row>
+          <%= p.collection_check_boxes :positions, Position.all, :id, :name do |b|%>
 
-        <row class='form-control'>
-          <div class="col-md-2">
-            <%= p.check_box :positions, "c" %>
-          </div>
-          <div class="col-md-6">
-            <%= p.label :positions, "catcher"%>
-          </div>
-        </row>
+              <%= b.label do %>
+                <div class="col-md-1"><%= b.check_box %></div>
+                <div class="col-md-1"><%= b.object.name %></div>
+              <% end %>
 
-        <row class='form-control'>
-          <div class="col-md-2">
-            <%= p.check_box :positions, "1b" %>
-          </div>
-          <div class="col-md-6">
-            <%= p.label :positions, "1b"%>
-          </div>
-        </row>
-
-        <row class='form-control'>
-          <div class="col-md-2">
-            <%= p.check_box :positions, "2b" %>
-          </div>
-          <div class="col-md-6">
-            <%= p.label :positions, "2b"%>
-          </div>
-        </row>
-
-        <row class='form-control'>
-          <div class="col-md-2">
-            <%= p.check_box :positions, "3b" %>
-          </div>
-          <div class="col-md-6">
-            <%= p.label :positions, "3b"%>
-          </div>
-        </row>
-
-        <row class='form-control'>
-          <div class="col-md-2">
-            <%= p.check_box :positions, "ss" %>
-          </div>
-          <div class="col-md-6">
-            <%= p.label :positions, "ss"%>
-          </div>
-        </row>
-
-        <row class='form-control'>
-          <div class="col-md-2">
-            <%= p.check_box :positions, "of" %>
-          </div>
-          <div class="col-md-6">
-            <%= p.label :positions, "of"%>
-          </div>
-        </row>
-
-        <row class='form-control'>
-          <div class="col-md-2">
-            <%= p.check_box :positions, "old_man" %>
-          </div>
-          <div class="col-md-6">
-            <%= p.label :positions, "old man in dugout"%>
-          </div>
+          <% end %>
         </row>
       </div>
-
-
-
-
-
 
     <%= p.submit "Save", class: 'btn btn-success' %>
     <% end %>
   </div>
-</div>

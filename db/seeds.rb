@@ -63,17 +63,17 @@ roster = Roster.new(
 roster.save
 puts "Roster: User: #{roster.user_id} and Team: #{roster.team_id} created."
 
-position = Position.new(name: "pitcher")
+position = Position.new(name: "P")
 position.save
-position = Position.new(name: "catcher")
+position = Position.new(name: "C")
 position.save
-p = Position.new(name: "1b")
+p = Position.new(name: "1B")
 p.save
-p = Position.new(name: "2b")
+p = Position.new(name: "2B")
 p.save
-p = Position.new(name: "3b")
+p = Position.new(name: "3B")
 p.save
-p = Position.new(name: "ss")
+p = Position.new(name: "SS")
 p.save
-p = Position.new(name: "of")
+p = Position.new(name: "OF")
 p.save

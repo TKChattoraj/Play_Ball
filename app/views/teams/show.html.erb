@@ -3,3 +3,5 @@
 <% @notes.each do |n| %>
   <h4><%= n.content %></h4> <p>Created by <%= User.find(n.user_id).first_name %> on <%= n.created_at %></p>
 <% end %>
+<h3>Hitting:</h3>
+<%

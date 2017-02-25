@@ -9,6 +9,14 @@ class Player < ActiveRecord::Base
   # will allow player.bats = 'bats_left'
   # player.bats_left? #=> true
   enum throws: [:throws_left, :throws_right]
+
+
+  def self.on_team(team)
+    where("team_id =?", team)
+  end
+
+
+
 end
 
 
