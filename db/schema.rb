@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503035041) do
+ActiveRecord::Schema.define(version: 20170305171623) do
 
   create_table "hitting_totals", force: :cascade do |t|
     t.integer  "g"
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 20160503035041) do
   end
 
   add_index "hitting_totals", ["player_id"], name: "index_hitting_totals_on_player_id"
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "notes", force: :cascade do |t|
     t.text     "content"
