@@ -1,0 +1,86 @@
+<h1>New Player</h1>
+
+  <div class="col-md-12">
+    <%= form_for [@user, @player] do |p| %>
+    <div class="form-group">
+      <%= p.text_field :first_name, class: 'form-control', placeholder: "First Name" %>
+    </div>
+
+    <div class="form-group">
+      <%= p.text_field :last_name, class: 'form-control', placeholder: "Last Name" %>
+    </div>
+    <h3>Birthdate</h3>
+    <div class="form-group">
+      <%= p.date_field :birthdate, class: 'form-control'%>
+    </div>
+
+
+      <div class="form-group">
+        <h3>Bats</h3>
+        <row class='form-control'>
+          <div class="col-md-2">
+            <%= p.radio_button :bats, "bats_left"%>
+          </div>
+          <div class="col-md-6">
+            <%= p.label :bats, "Bats Left"%>
+          </div>
+        </row>
+
+        <row class='form-control'>
+          <div class="col-md-2">
+            <%= p.radio_button :bats, "bats_right"%>
+          </div>
+          <div class="col-md-6">
+            <%= p.label :bats, "Bats Right"%>
+          </div>
+        </row>
+
+        <row class='form-control'>
+          <div class="col-md-2">
+            <%= p.radio_button :bats, "switch_hitter"%>
+          </div>
+          <div class="col-md-6">
+            <%= p.label :bats, "Switch Hitter"%>
+          </div>
+        </row>
+      </div>
+
+      <div class="form-group">
+        <h3>Throws</h3>
+        <row class='form-control'>
+          <div class="col-md-2">
+            <%= p.radio_button :throws, "throws_left"%>
+          </div>
+          <div class="col-md-6">
+            <%= p.label :throws, "Throws Left"%>
+          </div>
+        </row>
+
+        <row class='form-control'>
+          <div class="col-md-2">
+            <%= p.radio_button :throws, "throws_right"%>
+          </div>
+          <div class="col-md-6">
+            <%= p.label :throws, "Throws Right"%>
+          </div>
+        </row>
+      </div>
+
+
+      <div class="form-group">
+        <h3>Positions</h3>
+        <row class='form-control'>
+          <%= p.collection_check_boxes :positions, Position.all, :id, :name do |b|%>
+
+              <%= b.label do %>
+                <div class="col-md-1"><%= b.check_box %></div>
+                <div class="col-md-1"><%= b.object.name %></div>
+              <% end %>
+
+          <% end %>
+        </row>
+      </div>
+
+    <%= p.submit "Save", class: 'btn btn-success' %>
+    <% end %>
+  </div>

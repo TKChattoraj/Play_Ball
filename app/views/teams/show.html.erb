@@ -3,3 +3,150 @@
 <% @notes.each do |n| %>
   <h4><%= n.content %></h4> <p>Created by <%= User.find(n.user_id).first_name %> on <%= n.created_at %></p>
 <% end %>
+<div class="row">
+  <div class="col-md-2">
+    <h4 class="stats-heading">Hitting:<h4>
+  </div>
+  <div class="col-md-10">
+    <div class="col-md-6 stats-table">
+      <div class="col-md-1">
+        <p>G</p>
+      </div>
+      <div class="col-md-1">
+        <p>PA</p>
+      </div>
+      <div class="col-md-1">
+        <p>AB</p>
+      </div>
+      <div class="col-md-1">
+        <p>H</p>
+      </div>
+      <div class="col-md-1">
+        <p>BB</p>
+      </div>
+      <div class="col-md-1">
+        <p>1B</p>
+      </div>
+      <div class="col-md-1">
+        <p>2B</p>
+      </div>
+      <div class="col-md-1">
+        <p>3B</p>
+      </div>
+      <div class="col-md-1">
+        <p>HR</p>
+      </div>
+      <div class="col-md-1">
+        <p>K</p>
+      </div>
+      <div class="col-md-1">
+        <p>SF</p>
+      </div>
+      <div class="col-md-1">
+        <p>ERR</p>
+      </div>
+    </div>
+    <div class="col-md-6 stats-table">
+      <div class="col-md-1">
+        <p>HB</p>
+      </div>
+      <div class="col-md-1">
+        <p>RBI</p>
+      </div>
+      <div class="col-md-1">
+        <p>R</p>
+      </div>
+      <div class="col-md-1">
+        <p>SB</p>
+      </div>
+      <div class="col-md-1">
+        <p>CS</p>
+      </div>
+      <div class="col-md-1">
+        <p>AVE</p>
+      </div>
+      <div class="col-md-1">
+        <p>OBP</p>
+      </div>
+      <div class="col-md-1">
+        <p>SLG</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+<% @players.each do |p| %>
+  <div class= "row">
+
+    <div class="col-md-2">
+      <p><%= p.last_name %>, <%= p.first_name %> </p>
+    </div>
+    <div class="col-md-10">
+      <div class="col-md-6 stats-table">
+        <div class="col-md-1">
+          <p><%= p.hitting_total.g %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.pa %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.ab %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.h %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.bb %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.b1 %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.b2 %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.b3 %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.hr %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.k %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.sf %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.err %></p>
+        </div>
+      </div>
+      <div class="col-md-6 stats-table">
+        <div class="col-md-1">
+          <p><%= p.hitting_total.hb %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.rbi %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.r %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.sb%></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.cs %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.ave %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.obp %></p>
+        </div>
+        <div class="col-md-1">
+          <p><%= p.hitting_total.slg %></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<% end %>

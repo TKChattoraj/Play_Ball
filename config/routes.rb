@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 
 
+  resources :players
   get 'welcome/index'
 
   get 'welcome/about'
 
-  resources :users
+  resources :users do
+    resources :players
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :teams do
     resources :notes
