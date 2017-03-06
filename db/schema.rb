@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305192030) do
+ActiveRecord::Schema.define(version: 20170305230636) do
 
   create_table "games", force: :cascade do |t|
-    t.integer  "home_team_id"
-    t.integer  "visitor_team_id"
+    t.integer  "home_id"
+    t.integer  "visitors_id"
     t.integer  "winner_id"
     t.integer  "loser_id"
     t.integer  "location_id"
@@ -27,15 +27,9 @@ ActiveRecord::Schema.define(version: 20170305192030) do
     t.integer  "visitor_errors"
     t.date     "date"
     t.time     "time"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
-
-  add_index "games", ["home_team_id"], name: "index_games_on_home_team_id"
-  add_index "games", ["location_id"], name: "index_games_on_location_id"
-  add_index "games", ["loser_id"], name: "index_games_on_loser_id"
-  add_index "games", ["visitor_team_id"], name: "index_games_on_visitor_team_id"
-  add_index "games", ["winner_id"], name: "index_games_on_winner_id"
 
   create_table "hitting_totals", force: :cascade do |t|
     t.integer  "g"
