@@ -3,4 +3,5 @@ class Game < ActiveRecord::Base
   belongs_to :visitors, class_name: :Team
 
   has_many :game_hitting_stats
+  has_many :game_pitching_stats
 end

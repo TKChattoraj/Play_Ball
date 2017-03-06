@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :game_pitching_stats
   resources :players
   get 'welcome/index'
 
