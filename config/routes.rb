@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-
+  resources :games
+  resources :game_hitting_stats
   resources :game_pitching_stats
+  resources :locations
   resources :players
   get 'welcome/index'
 
