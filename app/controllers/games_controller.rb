@@ -16,18 +16,29 @@ class GamesController < ApplicationController
 
   def decide_game_view
     @game = Game.find(game_id)
+    @manager =
 
 
-
-    if @game.winner && @game.loser
-      puts 'winner/loser'
-      redirect_to @game
-    else
+    if !@game.winner && !@game.loser
+      puts "in decide #{@game}"
       redirect_to edit_game_path(@game)
+
+    else
+      redirect_to @game
     end
   end
 
   def edit
+    @team = applicable_team
+    @game = Game.find(params[:id])
+
+  end
+
+
+  def update
+    @game = Game.find(params[:id])
+    @game.update(game_score_params)
+
 
   end
 
@@ -52,6 +63,9 @@ private
   end
   def game_id
     params.require(:id)
+  end
+  def game_score_params
+    params.require(:game).permit(:home_runs, :home_hits, :home_errors, :visitor_runs, :visitor_hits, :visitor_errors)
   end
 
 end

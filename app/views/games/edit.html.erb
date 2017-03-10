@@ -1,1 +1,49 @@
 Games Edit View
+
+<%= form_for [@game] do |g| %>
+
+    <div class="form-group">
+      <row class='form-control'>
+
+        <div class='col-md-2'>
+          <h1 class='team-score'><%= @game.visitors.name %></h1>
+        </div>
+        <div class='col-md-4'>
+          <div class='col-md-4'>
+            <%= g.number_field :home_runs, class: 'form-control'%>
+          </div>
+          <div class='col-md-4'>
+            <%= g.number_field :home_hits, class: 'form-control'%>
+          </div>
+          <div class='col-md-4'>
+            <%= g.number_field :home_errors, class: 'form-control'%>
+          </div>
+        </div>
+      </row>
+    </div>
+
+
+
+
+    <div class="form-group">
+      <row class='form-control'>
+        <div class='col-md-2'>
+          <h1 class='team-score'><%= @game.home.name %></h1>
+        </div>
+        <div class='col-md-4'>
+          <div class='col-md-4'>
+            <%= g.number_field :visitor_runs, class: 'form-control'%>
+          </div>
+          <div class='col-md-4'>
+            <%= g.number_field :visitor_hits, class: 'form-control'%>
+          </div>
+          <div class='col-md-4'>
+            <%= g.number_field :visitor_errors, class: 'form-control'%>
+          </div>
+        </div>
+      </row>
+    </div>
+
+
+  <%= g.submit "Save", class: 'btn btn-success' %>
+<% end %>
