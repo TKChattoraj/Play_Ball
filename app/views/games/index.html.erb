@@ -1,2 +1,14 @@
 <h1> games index </h1>
+
+<% @games.each do |game| %>
+  <ul>
+    <li>
+      <div><%= link_to "#{game.home.name} v. #{game.visitors.name}", decide_game_view_url(id: game)%></div>
+      <div><%= game.date %></div>
+    </li>
+  </ul>
+
+<% end %>
+
+
 <%= render partial: 'games/games_tabs' %>
