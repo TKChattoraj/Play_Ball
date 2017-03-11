@@ -16,7 +16,7 @@ class GamesController < ApplicationController
 
   def decide_game_view
     @game = Game.find(game_id)
-    @manager =
+
 
 
     if !@game.winner && !@game.loser
@@ -31,6 +31,14 @@ class GamesController < ApplicationController
   def edit
     @team = applicable_team
     @game = Game.find(params[:id])
+    @players = @team.players
+    @hitting_stats = @game.game_hitting_stats
+    @hitting_stats_array = []
+    @players.each do |p|
+      @hitting_stats_array << @hitting_stats.find{|s| s.player_id == p.id}
+    end
+
+
 
   end
 
@@ -54,6 +62,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
+    create_initial_game_stats(@game)
     # puts @game.location
 
 
@@ -75,6 +84,19 @@ private
   end
   def game_score_params
     params.require(:game).permit(:home_runs, :home_hits, :home_errors, :visitor_runs, :visitor_hits, :visitor_errors)
+  end
+
+  def create_initial_game_stats(game)
+    create_game_stats(game, game.home)
+    create_game_stats(game, game.visitors)
+  end
+
+
+  def create_game_stats(game, team)
+    team.players.each do |p|
+      stat = GameHittingStat.new(game: game, player: p)
+      stat.save
+    end
   end
 
 end

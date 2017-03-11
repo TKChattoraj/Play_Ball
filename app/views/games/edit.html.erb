@@ -23,8 +23,6 @@ Games Edit View
     </div>
 
 
-
-
     <div class="form-group">
       <row class='form-control'>
         <div class='col-md-2'>
@@ -46,4 +44,20 @@ Games Edit View
 
 
   <%= g.submit "Save", class: 'btn btn-success' %>
+
+
+<% end %>
+<div><%= @team.name %></div>
+
+<% @players.each_with_index do  |p, i| %>
+  <div class='col-md-4'> <%= p.last_name %> </div>
+    <div class='col-md-8'>
+      <div class='col-md-2'>
+        <%= @hitting_stats_array[i].ab %><span>AB</span>
+      </div>
+      <div class='col-md-2'>
+        <%= @hitting_stats_array[i].single %><span>Single</span>
+      </div>
+    </div>
+  </div>
 <% end %>
