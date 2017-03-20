@@ -44,9 +44,6 @@
     <% end %>
   </div>
 
-
-
-
           <row class='col-md-12'>
             <div class='col-md-6 stats-table'>
               <div class='col-md-1'>Name</div>
@@ -118,6 +115,7 @@
     <% @players.each_with_index do  |player, i| %>
       <%= fields_for 'players[]', player do |p| %>
         <% player_hitting_stats = player.game_hitting_stats.find{|hs| hs.game_id == @game.id} %>
+        <%= p.hidden_field(:id) %>
         <%= fields_for 'game_hitting_stats[]', player_hitting_stats do |f| %>
           <row class='col-md-12'>
             <div class='col-md-6 stats-table'>
@@ -127,7 +125,7 @@
                     <%= f.text_field :pa, class: 'col-md-1'%>
                     <%= f.text_field :single, class: 'col-md-1' %>
                     <%= f.text_field :double, class: 'col-md-1'%>
-                    <%= f.text_field :tripple, class: 'col-md-1' %>
+                    <%= f.text_field :triple, class: 'col-md-1' %>
                     <%= f.text_field :hr, class: 'col-md-1'%>
                     <%= f.text_field :bb, class: 'col-md-1' %>
                     <%= f.text_field :error, class: 'col-md-1'%>
