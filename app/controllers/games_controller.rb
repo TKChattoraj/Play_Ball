@@ -89,23 +89,14 @@ class GamesController < ApplicationController
 
 
       hitting_stats.save
-  end
-
-
-
-
-
-
-
+    end
 
     @game.save
+    @players.each do |player|
+      calculate_hitting_totals(player)
+    end
 
-
-
-
-
-
-
+    redirect_to team_path(@team)
 
 
   end
@@ -161,4 +152,58 @@ private
       stat.save
     end
   end
+
+  def calculate_hitting_totals(p)
+    hitting_totals = HittingTotal.find_by!(player_id: p.id)
+    game_hitting_stats = GameHittingStat.where(player_id: p.id)
+
+    hitting_totals.g = 0
+    hitting_totals.pa = 0
+    hitting_totals.ab = 0
+    hitting_totals.h = 0
+    hitting_totals.bb = 0
+    hitting_totals.b1 = 0
+    hitting_totals.b2 = 0
+    hitting_totals.b3 = 0
+    hitting_totals.hr = 0
+    hitting_totals.k =  0
+    hitting_totals.sf = 0
+    hitting_totals.err = 0
+    hitting_totals.hb = 0
+    hitting_totals.rbi = 0
+    hitting_totals.r = 0
+    hitting_totals.sb = 0
+    hitting_totals.cs = 0
+    hitting_totals.ave = 0.000
+    hitting_totals.obp = 0.000
+    hitting_totals.slg = 0.000
+
+    game_hitting_stats.each do |gs|
+      hitting_totals.pa = hitting_totals.pa + gs.pa
+      hitting_totals.ab = hitting_totals.ab + gs.ab
+      hitting_totals.bb = hitting_totals.bb + gs.bb
+      hitting_totals.b1 = hitting_totals.b1 + gs.single
+      hitting_totals.b2 = hitting_totals.b2 + gs.double
+      hitting_totals.b3 = hitting_totals.b3 + gs.triple
+      hitting_totals.hr = hitting_totals.hr + gs.hr
+      hitting_totals.k = hitting_totals.k + gs.k
+      hitting_totals.sf = hitting_totals.sf + gs.sac
+      hitting_totals.err = hitting_totals.err + gs.error
+      hitting_totals.hb = hitting_totals.hb + gs.hb
+      hitting_totals.rbi = hitting_totals.rbi + gs.rbi
+      hitting_totals.r = hitting_totals.r + gs.r
+      hitting_totals.sb = hitting_totals.sb + gs.sb
+
+    end
+    hits = hitting_totals.b1 + hitting_totals.b2 + hitting_totals.b3 + hitting_totals.hr
+    hitting_totals.ave = hits/hitting_totals.ab
+
+    hitting_totals.obp = (hits + hitting_totals.bb + hitting_totals.err)/hitting_totals.pa
+
+    hitting_totals.save
+  end
+
+
+
+
 end
