@@ -60,6 +60,8 @@ class GamesController < ApplicationController
     @players = @team.players
 
     hitting = hitting_params
+    puts "hitting-out of the method"
+    puts hitting
     hitting.each do |key, value|
 
       hitting_id = key.to_i
@@ -122,8 +124,10 @@ private
     hitting_hash = {}
     hitting_stats_hash = params['game_hitting_stats']
     hitting_stats_hash.each do |key, value|
-      individual_hitting = hitting_stats_hash[key].symbolize_keys.slice(:pa, :single, :double, :tripple, :hr, :bb, :error, :fc, :hb, :wp, :pb, :sb, :rbi, :r, :earned_run, :sac, :k)
+      individual_hitting = hitting_stats_hash[key].symbolize_keys.slice(:ab, :pa, :single, :double, :tripple, :hr, :bb, :error, :fc, :hb, :wp, :pb, :sb, :rbi, :r, :earned_run, :sac, :k)
       hitting_hash[key] = individual_hitting
+      puts "hitting hash:"
+      puts hitting_hash[key]
     end
     hitting_hash
   end
@@ -156,7 +160,8 @@ private
   def calculate_hitting_totals(p)
     hitting_totals = HittingTotal.find_by!(player_id: p.id)
     game_hitting_stats = GameHittingStat.where(player_id: p.id)
-
+    puts "game_hitting_stats"
+    puts game_hitting_stats[0].pa
     hitting_totals.g = 0
     hitting_totals.pa = 0
     hitting_totals.ab = 0
@@ -179,8 +184,20 @@ private
     hitting_totals.slg = 0.000
 
     game_hitting_stats.each do |gs|
+      puts "gs.id"
+      puts gs.id
+      puts "hitting_totals:"
+      puts hitting_totals
+      puts "hitting_total.ab:"
+      puts hitting_totals.ab
+      puts "gs.ab"
+      puts gs.ab
+      puts "hitting_total.ab + gs.ab"
+      puts hitting_totals.ab + gs.ab.to_i
       hitting_totals.pa = hitting_totals.pa + gs.pa
       hitting_totals.ab = hitting_totals.ab + gs.ab
+      puts "ab:"
+      puts hitting_totals.ab
       hitting_totals.bb = hitting_totals.bb + gs.bb
       hitting_totals.b1 = hitting_totals.b1 + gs.single
       hitting_totals.b2 = hitting_totals.b2 + gs.double
@@ -195,10 +212,15 @@ private
       hitting_totals.sb = hitting_totals.sb + gs.sb
 
     end
-    hits = hitting_totals.b1 + hitting_totals.b2 + hitting_totals.b3 + hitting_totals.hr
-    hitting_totals.ave = hits/hitting_totals.ab
+    hitting_totals.save
+    hitting_totals.h = hitting_totals.b1 + hitting_totals.b2 + hitting_totals.b3 + hitting_totals.hr
+    hitting_totals.ave = hitting_totals.h.fdiv(hitting_totals.ab).round(3)
+    puts "hits:"
+    puts hitting_totals.h
+    puts "ab:"
+    puts hitting_totals.ab
 
-    hitting_totals.obp = (hits + hitting_totals.bb + hitting_totals.err)/hitting_totals.pa
+    hitting_totals.obp = (hitting_totals.h + hitting_totals.bb + hitting_totals.err).fdiv(hitting_totals.pa).round(3)
 
     hitting_totals.save
   end

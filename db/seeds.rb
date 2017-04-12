@@ -102,6 +102,13 @@ player = Player.new(
   team_id: 1
 )
 player.save
+PlayersPosition.create(player_id: player.id, position_id: 6)
+hitting_total = HittingTotal.new
+hitting_total.set_initial_totals
+hitting_total.player_id = player.id
+hitting_total.save
+
+
 
 player = Player.new(
   first_name: "Joe",
@@ -112,6 +119,11 @@ player = Player.new(
   team_id: 1
 )
 player.save
+PlayersPosition.create(player_id: player.id, position_id: 4)
+hitting_total = HittingTotal.new
+hitting_total.set_initial_totals
+hitting_total.player_id = player.id
+hitting_total.save
 
 player = Player.new(
   first_name: "Cesar",
@@ -122,3 +134,8 @@ player = Player.new(
   team_id: 1
 )
 player.save
+PlayersPosition.create(player_id: player.id, position_id: 7)
+hitting_total = HittingTotal.new
+hitting_total.set_initial_totals
+hitting_total.player_id = player.id
+hitting_total.save
