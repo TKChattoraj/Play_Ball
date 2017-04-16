@@ -18,7 +18,7 @@
                   <% if current_user %>
                        At Bat: <strong><%= current_user.first_name %></strong>
                        <%= link_to "Sign Out", session_path(current_user), method: :delete %>
-                       </div>
+
                     <% else %>
                        <%= link_to "Register", new_user_path %> - <%= link_to "Sign In", new_session_path %>
                 <% end %>
@@ -56,12 +56,6 @@
         </div>
 
       </div>
-
-
-
-
-
-
 
   </div>
 

@@ -1,5 +1,5 @@
 <% if current_user && current_user.current_team %>
-  <div class="row">
+
     <ul class="nav nav-tabs">
 
       <li><%= link_to "Add a Player", new_player_path %></li>
@@ -8,5 +8,5 @@
 
       <li><%= link_to "Make a Note", new_team_note_path(current_user.current_team) %></li>
     </ul>
-  </div>
+
 <% end %>

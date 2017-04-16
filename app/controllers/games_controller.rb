@@ -214,14 +214,16 @@ private
     end
     hitting_totals.save
     hitting_totals.h = hitting_totals.b1 + hitting_totals.b2 + hitting_totals.b3 + hitting_totals.hr
-    hitting_totals.ave = hitting_totals.h.fdiv(hitting_totals.ab).round(3)
-    puts "hits:"
-    puts hitting_totals.h
-    puts "ab:"
-    puts hitting_totals.ab
 
-    hitting_totals.obp = (hitting_totals.h + hitting_totals.bb + hitting_totals.err).fdiv(hitting_totals.pa).round(3)
+    hitting_totals.ave = hitting_totals.h.fdiv(hitting_totals.ab)
 
+    hitting_totals.obp = (hitting_totals.h + hitting_totals.bb + hitting_totals.hb).fdiv(hitting_totals.pa)
+
+
+
+    total_bases = hitting_totals.b1 + hitting_totals.b2 * 2 + hitting_totals.b3 * 3 + hitting_totals.hr * 4
+
+    hitting_totals.slg = total_bases.fdiv(hitting_totals.ab)
     hitting_totals.save
   end
 
