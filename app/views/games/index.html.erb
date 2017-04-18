@@ -1,14 +1,15 @@
-<h1> games index </h1>
 
-<% @games.each do |game| %>
-  <ul>
-    <li>
-      <div><%= link_to "#{game.home.name} v. #{game.visitors.name}", decide_game_view_url(id: game)%></div>
-      <div><%= game.date %></div>
-    </li>
-  </ul>
+<div class="col-md-4 left-margin-10px">
+  <h1> Schedule</h1>
 
-<% end %>
+  <% @games.each do |game| %>
+    <ul>
+      <li>
+        <div><%= link_to "#{game.home.name} v. #{game.visitors.name}", decide_game_view_url(id: game)%></div>
+        <div><%= game.date %></div>
+      </li>
+    </ul>
 
-
-<%= render partial: 'games/games_tabs' %>
+  <% end %>
+  <%= render partial: 'games/games_tabs' %>
+</div>
