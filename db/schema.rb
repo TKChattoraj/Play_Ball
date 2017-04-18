@@ -11,7 +11,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503035041) do
+ActiveRecord::Schema.define(version: 20170319235903) do
+
+  create_table "game_hitting_stats", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "game_id"
+    t.integer  "ab"
+    t.integer  "pa"
+    t.integer  "single"
+    t.integer  "double"
+    t.integer  "triple"
+    t.integer  "hr"
+    t.integer  "bb"
+    t.integer  "error"
+    t.integer  "fc"
+    t.integer  "hb"
+    t.integer  "wp"
+    t.integer  "pb"
+    t.integer  "sb"
+    t.integer  "rbi"
+    t.integer  "r"
+    t.integer  "earned_run"
+    t.integer  "sac"
+    t.integer  "k"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "game_pitching_stats", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "game_id"
+    t.integer  "full_innings"
+    t.integer  "partial_innings"
+    t.integer  "r"
+    t.integer  "er"
+    t.integer  "save"
+    t.integer  "cg"
+    t.integer  "bf"
+    t.integer  "bb"
+    t.integer  "h"
+    t.integer  "single"
+    t.integer  "double"
+    t.integer  "tripple"
+    t.integer  "hr"
+    t.integer  "k"
+    t.integer  "wp"
+    t.integer  "hb"
+    t.integer  "bk"
+    t.integer  "sb"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer  "home_id"
+    t.integer  "visitors_id"
+    t.integer  "winner_id"
+    t.integer  "loser_id"
+    t.integer  "location_id"
+    t.integer  "home_runs"
+    t.integer  "home_hits"
+    t.integer  "home_errors"
+    t.integer  "visitor_runs"
+    t.integer  "visitor_hits"
+    t.integer  "visitor_errors"
+    t.date     "date"
+    t.time     "time"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "hitting_totals", force: :cascade do |t|
     t.integer  "g"
@@ -40,6 +108,12 @@ ActiveRecord::Schema.define(version: 20160503035041) do
   end
 
   add_index "hitting_totals", ["player_id"], name: "index_hitting_totals_on_player_id"
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "notes", force: :cascade do |t|
     t.text     "content"

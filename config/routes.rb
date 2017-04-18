@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-
-
+  get 'games/decide_game_view' => 'games#decide_game_view', as: :decide_game_view
+  resources :games
+  resources :game_hitting_stats
+  resources :game_pitching_stats
+  resources :locations
   resources :players
   get 'welcome/index'
 
   get 'welcome/about'
+
+
 
   resources :users do
     resources :players

@@ -1,0 +1,55 @@
+New Game Form
+<h1>New Game </h1>
+
+  <div class="col-md-4">
+    <%= form_for [@game] do |g| %>
+
+      <div class="form-group">
+        <row class='form-control'>
+          <div class='col-md-4'>
+            <%= g.label :visitors_id, "Visitors" %>
+          </div>
+          <div class='col-md-4'>
+            <%= g.collection_select :visitors_id, Team.order(:name), :id, :name, include_blank: true %>
+          </div>
+        </row>
+      </div>
+
+      <div class="form-group">
+        <row class='form-control'>
+          <div class='col-md-4'>
+            <%= g.label :home_id, "Home" %>
+          </div>
+          <div class='col-md-4'>
+            <%= g.collection_select :home_id, Team.order(:name), :id, :name, include_blank: true %>
+          </div>
+        </row>
+      </div>
+
+      <div class="form-group">
+        <%= g.date_field :date, class: 'form-control'%>
+      </div>
+
+      <div class="form-group">
+        <%= g.time_field :time, class: 'form-control'%>
+      </div>
+
+
+      <div class="form-group">
+        <row class='form-control'>
+          <div class='col-md-4'>
+            <%= g.label :location_id, "Location" %>
+          </div>
+          <div class='col-md-4'>
+            <%= g.collection_select :location_id, Location.order(:name), :id, :name, include_blank: true %>
+          </div>
+        </row>
+      </div>
+
+
+
+
+
+      <%= g.submit "Save", class: 'btn btn-success' %>
+    <% end %>
+  </div>

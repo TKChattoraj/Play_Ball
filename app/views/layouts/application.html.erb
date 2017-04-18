@@ -12,11 +12,13 @@
           <li><%= link_to "Home", welcome_index_path %></li>
           <li><%= link_to "About", welcome_about_path %></li>
 
+          <li><%= link_to "Schedule", games_path %></li>
+
                 <div class="pull-right user-info">
                   <% if current_user %>
                        At Bat: <strong><%= current_user.first_name %></strong>
                        <%= link_to "Sign Out", session_path(current_user), method: :delete %>
-                       </div>
+
                     <% else %>
                        <%= link_to "Register", new_user_path %> - <%= link_to "Sign In", new_session_path %>
                 <% end %>
@@ -44,34 +46,16 @@
         <% end %>
       </div>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= image_tag("CABL-BRICK-WALLA1.png", :size => "313x313") %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
 
           <%= yield %>
 
-          <% if current_user && current_user.current_team %>
-            <div class="row">
-              <ul class="nav nav-tabs">
-
-                <li><%= link_to "Add a Player", new_player_path %></li>
-
-                <li><%= link_to "To be: Input Game Stats", welcome_about_path %></li>
-
-                <li><%= link_to "Make a Note", new_team_note_path(current_user.current_team) %></li>
-              </ul>
-            </div>
-          <% end %>
         </div>
 
       </div>
-
-
-
-
-
-
 
   </div>
 

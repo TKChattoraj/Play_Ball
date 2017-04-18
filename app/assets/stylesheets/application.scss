@@ -16,6 +16,9 @@
   @import "bootstrap-sprockets";
   @import "bootstrap";
 
+ .container {
+   width: auto;
+ }
  .user-info {
    margin-top: 9px;
  }
@@ -32,3 +35,7 @@
  .stats-heading {
    margin-top: 0px;
  }
+
+ .left-margin-10px {
+  margin-left: 10px;
+}
