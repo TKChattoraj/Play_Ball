@@ -45,17 +45,10 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    # configured_params = game_score_params
-    # @game.update(game_score_params)
-    # if (@game.home_runs > @game.visitor_runs)
-    #   @game.winner = @game.home
-    #   @game.loser = @game.visitors
-    # end
-    # if (@game.visitor_runs > @game.home_runs)
-    #   @game.winner = @game.visitors
-    #   @game.loser = @game.home
-    # end
-    # @game.save
+
+    @game.update(game_score_params)
+    @game.determine_winner_loser
+
     @team = applicable_team
     @players = @team.players
 
