@@ -11,7 +11,7 @@ class Team < ActiveRecord::Base
 
 
 
-  def determine_pct
+  def determine_wins_loss_pct
     games = []
 
     Game.where(visitors: self.id).find_each do |g|
@@ -20,12 +20,29 @@ class Team < ActiveRecord::Base
     Game.where(home: self.id).find_each do |g|
       games << g
     end
-
-    puts "******************* Team's game count:************"
-    puts games.count
+    wins = 0
+    losses = 0
     games.each do |g|
-      puts g.id
+      if g.winner_id == self.id
+        wins += 1
+      end
+      if g.loser_id == self.id
+        losses += 1
+      end
     end
+    self.wins = wins
+    self.losses = losses
+    self.winning_percentage = self.wins.fdiv(self.wins + self.losses)
+    self.save
+
+  end
+
+  def determine_games_back
+    teams = Team.order(winning_percentage: :desc)
+    first_place = teams[0]
+    games_back = ((first_place.wins - self.wins) + (self.losses - first_place.losses)).fdiv(2).round(1)
+    self.games_back = games_back
+    self.save
 
   end
 
