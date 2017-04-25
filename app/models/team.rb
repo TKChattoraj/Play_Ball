@@ -37,12 +37,19 @@ class Team < ActiveRecord::Base
 
   end
 
-  def determine_games_back
+
+
+
+
+
+  def self.determine_games_back
     teams = Team.order(winning_percentage: :desc)
     first_place = teams[0]
-    games_back = ((first_place.wins - self.wins) + (self.losses - first_place.losses)).fdiv(2).round(1)
-    self.games_back = games_back
-    self.save
+    teams.each do |t|
+      games_back = ((first_place.wins - t.wins).abs + (t.losses - first_place.losses).abs).fdiv(2).round(1)
+      t.games_back = games_back
+      t.save
+    end
 
   end
 

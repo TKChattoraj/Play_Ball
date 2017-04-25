@@ -49,7 +49,7 @@ class GamesController < ApplicationController
 
     @team = applicable_team
     @team.determine_wins_loss_pct
-    @team.determine_games_back
+    Team.determine_games_back
 
     @players = @team.players
 
