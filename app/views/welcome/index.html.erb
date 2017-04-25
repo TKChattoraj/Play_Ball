@@ -52,7 +52,9 @@
         <div class="media">
           <div class="media-body">
             <h3 class="media-heading">
-              .545
+              <% if t.winning_percentage %>
+                <%= t.winning_percentage %>
+              <% end %>
             </h3>
           </div>
         </div>
@@ -61,7 +63,9 @@
             <div class="media">
               <div class="media-body">
                 <h3 class="media-heading">
-                  ...
+                  <% if t.games_back %>
+                    <%= t.games_back %>
+                  <% end %>
                 </h3>
               </div>
             </div>

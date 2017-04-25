@@ -20,9 +20,7 @@ class GamesController < ApplicationController
 
 
     if !@game.winner && !@game.loser
-      puts "in decide #{@game}"
       redirect_to edit_game_path(@game)
-
     else
       redirect_to @game
     end
@@ -50,11 +48,13 @@ class GamesController < ApplicationController
     @game.determine_winner_loser
 
     @team = applicable_team
+    @team.determine_wins_loss_pct
+    @team.determine_games_back
+
     @players = @team.players
 
     hitting = hitting_params
-    puts "hitting-out of the method"
-    puts hitting
+
     hitting.each do |key, value|
 
       hitting_id = key.to_i
@@ -119,8 +119,8 @@ private
     hitting_stats_hash.each do |key, value|
       individual_hitting = hitting_stats_hash[key].symbolize_keys.slice(:ab, :pa, :single, :double, :tripple, :hr, :bb, :error, :fc, :hb, :wp, :pb, :sb, :rbi, :r, :earned_run, :sac, :k)
       hitting_hash[key] = individual_hitting
-      puts "hitting hash:"
-      puts hitting_hash[key]
+
+
     end
     hitting_hash
   end
@@ -153,8 +153,7 @@ private
   def calculate_hitting_totals(p)
     hitting_totals = HittingTotal.find_by!(player_id: p.id)
     game_hitting_stats = GameHittingStat.where(player_id: p.id)
-    puts "game_hitting_stats"
-    puts game_hitting_stats[0].pa
+
     hitting_totals.g = 0
     hitting_totals.pa = 0
     hitting_totals.ab = 0
@@ -177,20 +176,9 @@ private
     hitting_totals.slg = 0.000
 
     game_hitting_stats.each do |gs|
-      puts "gs.id"
-      puts gs.id
-      puts "hitting_totals:"
-      puts hitting_totals
-      puts "hitting_total.ab:"
-      puts hitting_totals.ab
-      puts "gs.ab"
-      puts gs.ab
-      puts "hitting_total.ab + gs.ab"
-      puts hitting_totals.ab + gs.ab.to_i
+
       hitting_totals.pa = hitting_totals.pa + gs.pa
       hitting_totals.ab = hitting_totals.ab + gs.ab
-      puts "ab:"
-      puts hitting_totals.ab
       hitting_totals.bb = hitting_totals.bb + gs.bb
       hitting_totals.b1 = hitting_totals.b1 + gs.single
       hitting_totals.b2 = hitting_totals.b2 + gs.double
