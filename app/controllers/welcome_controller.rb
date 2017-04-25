@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
   def index
-    @teams = Team.all
+    @teams = Team.order(winning_percentage: :desc)
+    Team.determine_games_back
 
   end
 
