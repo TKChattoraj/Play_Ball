@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'welcome/about'
 
+  get '/keep-score/(*path)' => "keep_score#index"
 
 
   resources :users do
