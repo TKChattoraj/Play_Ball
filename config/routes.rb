@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   namespace :api do
     match '/texts', to: 'texts#preflight', via: [:options]
     resources :texts, only: [:create]
+    match '/keepscore/teams', to: 'keep_scores#preflight', via: [:options]
     get 'keepscore/teams' => 'keep_scores#get_teams', as: :get_teams
   end
   # The priority is based upon order of creation: first created -> highest priority.

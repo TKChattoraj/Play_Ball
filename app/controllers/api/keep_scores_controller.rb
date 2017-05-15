@@ -17,11 +17,13 @@ class API::KeepScoresController < ApplicationController
     end
 
     def preflight
+
       head 200
     end
 
   def get_teams
     teams = Team.all
+
 
     render json: teams, each_serializer: TeamSerializer
   end
