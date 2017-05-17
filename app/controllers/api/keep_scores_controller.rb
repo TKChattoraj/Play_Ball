@@ -27,4 +27,13 @@ class API::KeepScoresController < ApplicationController
 
     render json: teams, each_serializer: TeamSerializer
   end
+
+  def get_roster
+    team_id = params[:id]
+    team = Team.find(team_id)
+    players = team.players
+
+    render json: players, each_serializer: RosterSerializer
+  end
+
 end
