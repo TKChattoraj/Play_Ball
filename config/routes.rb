@@ -31,6 +31,9 @@ Rails.application.routes.draw do
     match '/keepscore/roster', to: 'keep_scores#preflight', via: [:options]
     get 'keepscore/roster' => 'keep_scores#get_roster', as: :get_roster
 
+    match '/keepscore/post_game_stats', to: 'keep_scores#preflight', via: [:options]
+    post 'keepscore/post_game_stats' => 'keep_scores#post_game_stats', as: :post_game_stats
+
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

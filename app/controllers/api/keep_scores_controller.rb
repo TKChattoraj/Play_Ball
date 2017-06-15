@@ -13,7 +13,7 @@ class API::KeepScoresController < ApplicationController
 
       headers['Access-Control-Alow-Methods'] = 'POST, GET, OPTIONS'
 
-      headers['Access-Control-Allow-Headers'] = 'Content-Type'
+      headers['Access-Control-Allow-Headers'] = 'Content-Type, Origin, X-Auth-Token'
     end
 
     def preflight
@@ -34,6 +34,12 @@ class API::KeepScoresController < ApplicationController
     players = team.players
 
     render json: players, each_serializer: RosterSerializer
+  end
+
+
+  def post_game_stats
+    @params = params
+    puts @params
   end
 
 end
