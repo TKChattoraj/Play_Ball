@@ -40,6 +40,9 @@ class API::KeepScoresController < ApplicationController
   def post_game_stats
     @params = params
     puts @params
+    response = 'Stats Sent!'.to_json
+    render json: response
+
   end
 
 end
