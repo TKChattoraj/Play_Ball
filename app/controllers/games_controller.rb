@@ -17,9 +17,8 @@ class GamesController < ApplicationController
   def decide_game_view
     @game = Game.find(game_id)
 
-
-
-    if !@game.winner && !@game.loser
+    if @game.winner.nil? || @game.loser.nil?
+      flash[:notice] = "no winner/loser yet"
       redirect_to edit_game_path(@game)
     else
       redirect_to @game
@@ -27,8 +26,12 @@ class GamesController < ApplicationController
   end
 
   def edit
-    @team = applicable_team
     @game = Game.find(params[:id])
+    @team = applicable_team
+    unless (@team.id == @game.home_id || @team.id == @game.visitors_id)
+      flash[:notice] = "Game not finished and you aren't athorized to update this game!"
+      redirect_to games_path
+    end
     @players = @team.players
     @hitting_stats = @game.game_hitting_stats
     @hitting_stats_array = []
@@ -48,6 +51,7 @@ class GamesController < ApplicationController
     @game.determine_winner_loser
 
     @team = applicable_team
+
     @team.determine_wins_loss_pct
     Team.determine_games_back
 
@@ -146,6 +150,24 @@ private
   def create_game_stats(game, team)
     team.players.each do |p|
       stat = GameHittingStat.new(game: game, player: p)
+      stat.ab = 0
+      stat.pa = 0
+      stat.single = 0
+      stat.double = 0
+      stat.triple = 0
+      stat.hr = 0
+      stat.bb = 0
+      stat.error = 0
+      stat.fc = 0
+      stat.hb = 0
+      stat.wp = 0
+      stat.pb = 0
+      stat.sb = 0
+      stat.rbi = 0
+      stat.r = 0
+      stat.earned_run = 0
+      stat.sac = 0
+      stat.k = 0
       stat.save
     end
   end

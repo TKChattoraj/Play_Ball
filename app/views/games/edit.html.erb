@@ -1,31 +1,34 @@
+<row class='col-md-12'>
+  <row class='col-md-6'>
+    <div class='col-md-4'>
+
+    </div>
+    <div class='col-md-8'>
+      <div class='col-md-4'>
+        <h1 class='RHE'>R</h1>
+      </div>
+      <div class='col-md-4'>
+        <h1 class='RHE'>H</h1>
+      </div>
+      <div class='col-md-4'>
+        <h1 class='RHE'>E</h1>
+      </div>
+    </div>
+  </row>
+</row>
+
+
+
+
 
 <%= form_tag(game_path, method: "put") do %>
-  <div class='form-group col-md-6'>
+  <div class='form-group col-md-12'>
     <%= fields_for 'game', @game do |g| %>
 
-
-        <row class='col-md-12'>
-
+        <div class= 'col-md-12'>
+        <row class='col-md-6'>
           <div class='col-md-4'>
             <h1 class='team-score'><%= @game.visitors.name %></h1>
-          </div>
-          <div class='col-md-8'>
-            <div class='col-md-4'>
-              <%= g.number_field :home_runs, class: 'form-control'%>
-            </div>
-            <div class='col-md-4'>
-              <%= g.number_field :home_hits, class: 'form-control'%>
-            </div>
-            <div class='col-md-4'>
-              <%= g.number_field :home_errors, class: 'form-control'%>
-            </div>
-          </div>
-        </row>
-
-
-        <row class='col-md-12'>
-          <div class='col-md-4'>
-            <h1 class='team-score'><%= @game.home.name %></h1>
           </div>
           <div class='col-md-8'>
             <div class='col-md-4'>
@@ -39,6 +42,26 @@
             </div>
           </div>
         </row>
+        </div>
+
+        <div class='col-md-12'>
+        <row class='col-md-6'>
+          <div class='col-md-4'>
+            <h1 class='team-score'><%= @game.home.name %></h1>
+          </div>
+          <div class='col-md-8'>
+            <div class='col-md-4'>
+              <%= g.number_field :home_runs, class: 'form-control'%>
+            </div>
+            <div class='col-md-4'>
+              <%= g.number_field :home_hits, class: 'form-control'%>
+            </div>
+            <div class='col-md-4'>
+              <%= g.number_field :home_errors, class: 'form-control'%>
+            </div>
+          </div>
+        </row>
+        </div>
 
 
     <% end %>
