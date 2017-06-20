@@ -18,9 +18,6 @@
 </row>
 
 
-
-
-
 <%= form_tag(game_path, method: "put") do %>
   <div class='form-group col-md-12'>
     <%= fields_for 'game', @game do |g| %>
@@ -62,8 +59,6 @@
           </div>
         </row>
         </div>
-
-
     <% end %>
   </div>
 
@@ -137,44 +132,175 @@
   <!-- <row class='col-md-12'> -->
     <% @players.each_with_index do  |player, i| %>
       <%= fields_for 'players[]', player do |p| %>
+      <!-- -->
         <% player_hitting_stats = player.game_hitting_stats.find{|hs| hs.game_id == @game.id} %>
-        <%= p.hidden_field(:id) %>
-        <%= fields_for 'game_hitting_stats[]', player_hitting_stats do |f| %>
-          <row class='col-md-12 left-margin-10px'>
-            <div class='col-md-6 stats-table'>
-              <div class='col-md-2'> <%= player.last_name %> </div>
-              <div class='col-md-10 stats-table'>
-                    <%= f.text_field :ab, class: 'col-md-1' %>
-                    <%= f.text_field :pa, class: 'col-md-1'%>
-                    <%= f.text_field :single, class: 'col-md-1' %>
-                    <%= f.text_field :double, class: 'col-md-1'%>
-                    <%= f.text_field :triple, class: 'col-md-1' %>
-                    <%= f.text_field :hr, class: 'col-md-1'%>
-                    <%= f.text_field :bb, class: 'col-md-1' %>
-                    <%= f.text_field :error, class: 'col-md-1'%>
-                    <%= f.text_field :fc, class: 'col-md-1' %>
-                    <%= f.text_field :hb, class: 'col-md-1'%>
-                    <%= f.text_field :wp, class: 'col-md-1' %>
-                    <%= f.text_field :pb, class: 'col-md-1'%>
+        <% if player_hitting_stats %>
+          <%= p.hidden_field(:id) %>
+          <%= fields_for 'game_hitting_stats[]', player_hitting_stats do |f| %>
+            <row class='col-md-12 left-margin-10px'>
+              <div class='col-md-6 stats-table'>
+                <div class='col-md-2'> <%= player.last_name %> </div>
+                <div class='col-md-10 stats-table'>
+                      <%= f.text_field :ab, class: 'col-md-1' %>
+                      <%= f.text_field :pa, class: 'col-md-1'%>
+                      <%= f.text_field :single, class: 'col-md-1' %>
+                      <%= f.text_field :double, class: 'col-md-1'%>
+                      <%= f.text_field :triple, class: 'col-md-1' %>
+                      <%= f.text_field :hr, class: 'col-md-1'%>
+                      <%= f.text_field :bb, class: 'col-md-1' %>
+                      <%= f.text_field :error, class: 'col-md-1'%>
+                      <%= f.text_field :fc, class: 'col-md-1' %>
+                      <%= f.text_field :hb, class: 'col-md-1'%>
+                      <%= f.text_field :wp, class: 'col-md-1' %>
+                      <%= f.text_field :pb, class: 'col-md-1'%>
+                </div>
               </div>
-            </div>
-            <div class='col-md-6 stats-table'>
-              <div class='col-md-12 stats-table'>
-                    <%= f.text_field :sb, class: 'col-md-1' %>
-                    <%= f.text_field :rbi, class: 'col-md-1'%>
-                    <%= f.text_field :r, class: 'col-md-1' %>
-                    <%= f.text_field :earned_run, class: 'col-md-1'%>
-                    <%= f.text_field :sac, class: 'col-md-1' %>
-                    <%= f.text_field :k, class: 'col-md-1'%>
+              <div class='col-md-6 stats-table'>
+                <div class='col-md-12 stats-table'>
+                      <%= f.text_field :sb, class: 'col-md-1' %>
+                      <%= f.text_field :rbi, class: 'col-md-1'%>
+                      <%= f.text_field :r, class: 'col-md-1' %>
+                      <%= f.text_field :earned_run, class: 'col-md-1'%>
+                      <%= f.text_field :sac, class: 'col-md-1' %>
+                      <%= f.text_field :k, class: 'col-md-1'%>
+                </div>
               </div>
-            </div>
+            </row>
+          <% end %>
+         <% end %>
 
-          </row>
+      <% end %>
+    <% end %>
+
+
+
+
+    <row class='col-md-12 left-margin-10px'>
+      <div class='col-md-6 stats-table'>
+        <div class='col-md-2'>Name</div>
+        <div class='col-md-10 stats-table'>
+
+            <div class="col-md-1">
+              <p>W</p>
+            </div>
+            <div class="col-md-1">
+              <p>L</p>
+            </div>
+            <div class="col-md-1">
+              <p>IP</p>
+            </div>
+            <div class="col-md-1">
+              <p>R</p>
+            </div>
+            <div class="col-md-1">
+              <p>ER</p>
+            </div>
+            <div class="col-md-1">
+              <p>G</p>
+            </div>
+            <div class="col-md-1">
+              <p>GS</p>
+            </div>
+            <div class="col-md-1">
+              <p>CG</p>
+            </div>
+            <div class="col-md-1">
+              <p>SV</p>
+            </div>
+            <div class="col-md-1">
+              <p>BF</p>
+            </div>
+            <div class="col-md-1">
+              <p>BB</p>
+            </div>
+            <div class="col-md-1">
+              <p>H</p>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6 stats-table">
+          <div class="col-md-12 stats-table">
+            <div class="col-md-1">
+              <p>1B<p>
+            </div>
+            <div class="col-md-1">
+              <p>2B</p>
+            </div>
+            <div class="col-md-1">
+              <p>3B</p>
+            </div>
+            <div class="col-md-1">
+              <p>HR</p>
+            </div>
+            <div class="col-md-1">
+              <p>K</p>
+            </div>
+            <div class="col-md-1">
+              <p>WP</p>
+            </div>
+            <div class="col-md-1">
+              <p>HB</p>
+            </div>
+            <div class="col-md-1">
+              <p>BK</p>
+            </div>
+            <div class="col-md-1">
+              <p>SB</p>
+            </div>
+          </div>
+      </div>
+    </row>
+
+    <% @players.each_with_index do  |player, i| %>
+      <% if player.positions.include?(Position.find(1)) %>
+        <%= fields_for 'players[]', player do |p| %>
+          <% player_pitching_stats = player.game_pitching_stats.find{|ps| ps.game_id == @game.id} %>
+          <%= p.hidden_field(:id) %>
+
+          <% if player_pitching_stats %>
+            <%= fields_for 'game_pitching_stats[]', player_pitching_stats do |f| %>
+              <row class='col-md-12 left-margin-10px'>
+                <div class='col-md-6 stats-table'>
+                  <div class='col-md-2'> <%= player.last_name %> </div>
+                  <div class='col-md-10 stats-table'>
+                        <%= f.text_field :w, class: 'col-md-1' %>
+                        <%= f.text_field :l, class: 'col-md-1'%>
+                        <%= f.text_field :ip, class: 'col-md-1' %>
+                        <%= f.text_field :r, class: 'col-md-1'%>
+                        <%= f.text_field :er, class: 'col-md-1' %>
+                        <%= f.text_field :g, class: 'col-md-1'%>
+                        <%= f.text_field :gs, class: 'col-md-1' %>
+                        <%= f.text_field :cg, class: 'col-md-1'%>
+                        <%= f.text_field :sv, class: 'col-md-1' %>
+                        <%= f.text_field :bf, class: 'col-md-1'%>
+                        <%= f.text_field :bb, class: 'col-md-1' %>
+                        <%= f.text_field :h, class: 'col-md-1'%>
+                  </div>
+                </div>
+                <div class='col-md-6 stats-table'>
+                  <div class='col-md-12 stats-table'>
+                        <%= f.text_field :b1, class: 'col-md-1' %>
+                        <%= f.text_field :b2, class: 'col-md-1'%>
+                        <%= f.text_field :b3, class: 'col-md-1' %>
+                        <%= f.text_field :hr, class: 'col-md-1'%>
+                        <%= f.text_field :k, class: 'col-md-1' %>
+                        <%= f.text_field :wp, class: 'col-md-1'%>
+                        <%= f.text_field :hb, class: 'col-md-1'%>
+                        <%= f.text_field :bk, class: 'col-md-1' %>
+                        <%= f.text_field :sb, class: 'col-md-1'%>
+                  </div>
+                </div>
+              </row>
+            <% end %>
+          <% end %>
+
         <% end %>
       <% end %>
     <% end %>
 
-  <!-- </row> -->
+
+
+
   <row class='col-md-12'>
     <%= submit_tag "Save", class: 'btn btn-success' %>
   </row>

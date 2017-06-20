@@ -17,12 +17,12 @@ class GamesController < ApplicationController
   def decide_game_view
     @game = Game.find(game_id)
 
-    if @game.winner.nil? || @game.loser.nil?
-      flash[:notice] = "no winner/loser yet"
+    # if @game.winner.nil? || @game.loser.nil?
+    #   flash[:notice] = "no winner/loser yet"
       redirect_to edit_game_path(@game)
-    else
-      redirect_to @game
-    end
+    # else
+      # redirect_to @game
+    # end
   end
 
   def edit
@@ -48,7 +48,9 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     @game.update(game_score_params)
-    @game.determine_winner_loser
+    unless @game.winner.nil? || @game.loser.nil?
+      @game.determine_winner_loser
+    end
 
     @team = applicable_team
 
@@ -198,8 +200,8 @@ private
     hitting_totals.slg = 0.000
 
     game_hitting_stats.each do |gs|
-
       hitting_totals.pa = hitting_totals.pa + gs.pa
+
       hitting_totals.ab = hitting_totals.ab + gs.ab
       hitting_totals.bb = hitting_totals.bb + gs.bb
       hitting_totals.b1 = hitting_totals.b1 + gs.single
@@ -216,17 +218,28 @@ private
 
     end
     hitting_totals.save
+
     hitting_totals.h = hitting_totals.b1 + hitting_totals.b2 + hitting_totals.b3 + hitting_totals.hr
-
-    hitting_totals.ave = hitting_totals.h.fdiv(hitting_totals.ab)
-
-    hitting_totals.obp = (hitting_totals.h + hitting_totals.bb + hitting_totals.hb).fdiv(hitting_totals.pa)
-
-
-
     total_bases = hitting_totals.b1 + hitting_totals.b2 * 2 + hitting_totals.b3 * 3 + hitting_totals.hr * 4
 
-    hitting_totals.slg = total_bases.fdiv(hitting_totals.ab)
+    if hitting_totals.ab == 0
+      hitting_totals.ave = 0
+      hitting_totals.slg = 0
+    else
+      hitting_totals.ave = hitting_totals.h.fdiv(hitting_totals.ab)
+      hitting_totals.slg = total_bases.fdiv(hitting_totals.ab)
+    end
+
+    if hitting_totals.pa == 0
+      hitting_totals.obp = 0
+    else
+
+      hitting_totals.obp = (hitting_totals.h + hitting_totals.bb + hitting_totals.hb).fdiv(hitting_totals.pa)
+    end
+
+
+
+
     hitting_totals.save
   end
 
