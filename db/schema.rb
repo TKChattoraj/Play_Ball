@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319235903) do
+ActiveRecord::Schema.define(version: 20170621004729) do
 
   create_table "game_hitting_stats", force: :cascade do |t|
     t.integer  "player_id"
@@ -45,14 +45,14 @@ ActiveRecord::Schema.define(version: 20170319235903) do
     t.integer  "partial_innings"
     t.integer  "r"
     t.integer  "er"
-    t.integer  "save"
+    t.integer  "sv"
     t.integer  "cg"
     t.integer  "bf"
     t.integer  "bb"
     t.integer  "h"
     t.integer  "single"
     t.integer  "double"
-    t.integer  "tripple"
+    t.integer  "triple"
     t.integer  "hr"
     t.integer  "k"
     t.integer  "wp"

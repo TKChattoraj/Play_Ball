@@ -171,6 +171,29 @@ private
       stat.sac = 0
       stat.k = 0
       stat.save
+
+      if p.positions.include?(Position.find(1))
+        pstat = GamePitchingStat.new(game: game, player: p)
+        pstat.full_innings = 0
+        pstat.partial_innings = 0
+        pstat.r = 0
+        pstat.er = 0
+        pstat.sv = 0
+        pstat.cg = 0
+        pstat.bf = 0
+        pstat.bb = 0
+        pstat.h = 0
+        pstat.single = 0
+        pstat.double = 0
+        pstat.triple = 0
+        pstat.hr = 0
+        pstat.k  = 0
+        pstat.wp = 0
+        pstat.hb = 0
+        pstat.bk = 0
+        pstat.sb = 0
+        pstat.save
+      end
     end
   end
 

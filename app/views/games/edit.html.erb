@@ -181,13 +181,10 @@
         <div class='col-md-10 stats-table'>
 
             <div class="col-md-1">
-              <p>W</p>
-            </div>
-            <div class="col-md-1">
-              <p>L</p>
-            </div>
-            <div class="col-md-1">
               <p>IP</p>
+            </div>
+            <div class="col-md-1">
+              <p>PIP</p>
             </div>
             <div class="col-md-1">
               <p>R</p>
@@ -196,16 +193,10 @@
               <p>ER</p>
             </div>
             <div class="col-md-1">
-              <p>G</p>
-            </div>
-            <div class="col-md-1">
-              <p>GS</p>
+              <p>SV</p>
             </div>
             <div class="col-md-1">
               <p>CG</p>
-            </div>
-            <div class="col-md-1">
-              <p>SV</p>
             </div>
             <div class="col-md-1">
               <p>BF</p>
@@ -216,10 +207,6 @@
             <div class="col-md-1">
               <p>H</p>
             </div>
-        </div>
-      </div>
-      <div class="col-md-6 stats-table">
-          <div class="col-md-12 stats-table">
             <div class="col-md-1">
               <p>1B<p>
             </div>
@@ -229,6 +216,10 @@
             <div class="col-md-1">
               <p>3B</p>
             </div>
+        </div>
+      </div>
+      <div class="col-md-6 stats-table">
+          <div class="col-md-12 stats-table">
             <div class="col-md-1">
               <p>HR</p>
             </div>
@@ -263,25 +254,22 @@
                 <div class='col-md-6 stats-table'>
                   <div class='col-md-2'> <%= player.last_name %> </div>
                   <div class='col-md-10 stats-table'>
-                        <%= f.text_field :w, class: 'col-md-1' %>
-                        <%= f.text_field :l, class: 'col-md-1'%>
-                        <%= f.text_field :ip, class: 'col-md-1' %>
+                        <%= f.text_field :full_innings, class: 'col-md-1' %>
+                        <%= f.text_field :partial_innings, class: 'col-md-1'%>
                         <%= f.text_field :r, class: 'col-md-1'%>
                         <%= f.text_field :er, class: 'col-md-1' %>
-                        <%= f.text_field :g, class: 'col-md-1'%>
-                        <%= f.text_field :gs, class: 'col-md-1' %>
-                        <%= f.text_field :cg, class: 'col-md-1'%>
                         <%= f.text_field :sv, class: 'col-md-1' %>
+                        <%= f.text_field :cg, class: 'col-md-1'%>
                         <%= f.text_field :bf, class: 'col-md-1'%>
                         <%= f.text_field :bb, class: 'col-md-1' %>
                         <%= f.text_field :h, class: 'col-md-1'%>
+                        <%= f.text_field :single, class: 'col-md-1' %>
+                        <%= f.text_field :double, class: 'col-md-1'%>
+                        <%= f.text_field :triple, class: 'col-md-1' %>
                   </div>
                 </div>
                 <div class='col-md-6 stats-table'>
                   <div class='col-md-12 stats-table'>
-                        <%= f.text_field :b1, class: 'col-md-1' %>
-                        <%= f.text_field :b2, class: 'col-md-1'%>
-                        <%= f.text_field :b3, class: 'col-md-1' %>
                         <%= f.text_field :hr, class: 'col-md-1'%>
                         <%= f.text_field :k, class: 'col-md-1' %>
                         <%= f.text_field :wp, class: 'col-md-1'%>
