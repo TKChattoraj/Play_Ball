@@ -92,9 +92,40 @@ class GamesController < ApplicationController
       hitting_stats.save
     end
 
+    pitching = pitching_params
+    if pitching
+      pitching.each do |key, value|
+        pitching_id = key.to_i
+        pitching_stats = GamePitchingStat.find(pitching_id)
+        pitching_stats.batters_retired = value[:batters_retired].to_i
+        pitching_stats.r = value[:r].to_i
+        pitching_stats.er = value[:er].to_i
+        pitching_stats.sv = value[:sv].to_i
+        pitching_stats.cg = value[:cg].to_i
+        pitching_stats.bf = value[:bf].to_i
+        pitching_stats.bb = value[:bb].to_i
+        pitching_stats.h = value[:h].to_i
+        pitching_stats.single = value[:single].to_i
+        pitching_stats.double = value[:double].to_i
+        pitching_stats.triple = value[:triple].to_i
+        pitching_stats.hr = value[:hr].to_i
+        pitching_stats.k = value[:k].to_i
+        pitching_stats.wp = value[:wp].to_i
+        pitching_stats.hb = value[:hb].to_i
+        pitching_stats.bk = value[:bk].to_i
+        pitching_stats.sb = value[:sb].to_i
+
+        pitching_stats.save
+      end
+    end
     @game.save
     @players.each do |player|
       calculate_hitting_totals(player)
+
+      if player.positions.include?(Position.find(1))
+        calculate_pitching_totals(player)
+      end
+
     end
 
     redirect_to team_path(@team)
@@ -130,6 +161,21 @@ private
     end
     hitting_hash
   end
+
+  def pitching_params
+    pitching_hash = {}
+    pitching_stats_hash = params['game_pitching_stats']
+    if pitching_stats_hash
+      pitching_stats_hash.each do |key, value|
+        individual_pitching =
+        pitching_stats_hash[key].symbolize_keys.slice(:batters_retired, :r, :er, :sv, :cg, :bf, :bb, :h, :single, :double, :triple, :hr, :k, :wp, :hb, :bk, :sb)
+        pitching_hash[key] = individual_pitching
+      end
+      pitching_hash
+    end
+  end
+
+
 
   def game_params
       params.require(:game).permit(:home_id, :visitors_id, :location_id, :date, :time)
@@ -174,8 +220,7 @@ private
 
       if p.positions.include?(Position.find(1))
         pstat = GamePitchingStat.new(game: game, player: p)
-        pstat.full_innings = 0
-        pstat.partial_innings = 0
+        pstat.batters_retired = 0
         pstat.r = 0
         pstat.er = 0
         pstat.sv = 0
@@ -192,10 +237,89 @@ private
         pstat.hb = 0
         pstat.bk = 0
         pstat.sb = 0
+        pstat.cs = 0
         pstat.save
       end
     end
   end
+
+  def calculate_pitching_totals(p)
+    pitching_totals = PitchingTotal.find_by!(player_id: p.id)
+    game_pitching_stats = GamePitchingStat.where(player_id: p.id)
+
+    pitching_totals.w = 0
+    pitching_totals.l = 0
+    # note:  ip===innings pitched will be calculated by
+    # batters retired divided by 3
+
+    pitching_totals.ip = 0
+    pitching_totals.r = 0
+    pitching_totals.er = 0
+    pitching_totals.g = 0
+    pitching_totals.gs = 0
+    pitching_totals.sv = 0
+    pitching_totals.cg = 0
+    pitching_totals.bf = 0
+    pitching_totals.bb = 0
+    pitching_totals.h = 0
+    pitching_totals.b1 = 0
+    pitching_totals.b2 = 0
+    pitching_totals.b3 = 0
+    pitching_totals.hr = 0
+    pitching_totals.k = 0
+    pitching_totals.wp = 0
+    pitching_totals.hb = 0
+    pitching_totals.bk = 0
+    pitching_totals.sb = 0
+    pitching_totals.cs = 0
+    pitching_totals.batters_retired = 0
+
+    pitching_totals.era = 0.000
+
+    game_pitching_stats.each do |ps|
+      pitching_totals.batters_retired += ps.batters_retired
+      pitching_totals.r += ps.r
+      pitching_totals.er += ps.er
+      if ps.bf > 0
+       pitching_totals.g += 1
+      end
+
+      # need to create a game started game_pitching_stat
+      #pitching_totals.gs += ps.gs
+
+
+      pitching_totals.sv += ps.sv
+      pitching_totals.cg += ps.cg
+      pitching_totals.bf += ps.bf
+      pitching_totals.bb += ps.bb
+      pitching_totals.h += ps.h
+      pitching_totals.b1 += ps.single
+      pitching_totals.b2 += ps.double
+      pitching_totals.b3 += ps.triple
+      pitching_totals.hr += ps.hr
+      pitching_totals.k += ps.k
+      pitching_totals.wp += ps.wp
+      pitching_totals.hb += ps.hb
+      pitching_totals.bk += ps.bk
+      pitching_totals.sb += ps.sb
+      pitching_totals.cs += ps.cs
+
+    end
+    pitching_totals.save
+
+
+    unless pitching_totals.batters_retired == 0
+      pitching_totals.era = pitching_totals.er.fdiv(pitching_totals.batters_retired)*27
+    end
+
+    pitching_totals.save
+
+
+
+  end
+
+
+
 
   def calculate_hitting_totals(p)
     hitting_totals = HittingTotal.find_by!(player_id: p.id)
@@ -259,9 +383,6 @@ private
 
       hitting_totals.obp = (hitting_totals.h + hitting_totals.bb + hitting_totals.hb).fdiv(hitting_totals.pa)
     end
-
-
-
 
     hitting_totals.save
   end

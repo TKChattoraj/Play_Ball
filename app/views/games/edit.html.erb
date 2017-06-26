@@ -141,28 +141,28 @@
               <div class='col-md-6 stats-table'>
                 <div class='col-md-2'> <%= player.last_name %> </div>
                 <div class='col-md-10 stats-table'>
-                      <%= f.text_field :ab, class: 'col-md-1' %>
-                      <%= f.text_field :pa, class: 'col-md-1'%>
-                      <%= f.text_field :single, class: 'col-md-1' %>
-                      <%= f.text_field :double, class: 'col-md-1'%>
-                      <%= f.text_field :triple, class: 'col-md-1' %>
-                      <%= f.text_field :hr, class: 'col-md-1'%>
-                      <%= f.text_field :bb, class: 'col-md-1' %>
-                      <%= f.text_field :error, class: 'col-md-1'%>
-                      <%= f.text_field :fc, class: 'col-md-1' %>
-                      <%= f.text_field :hb, class: 'col-md-1'%>
-                      <%= f.text_field :wp, class: 'col-md-1' %>
-                      <%= f.text_field :pb, class: 'col-md-1'%>
+                      <%= f.number_field :ab, min: 0, class: 'col-md-1' %>
+                      <%= f.number_field :pa, min: 0, class: 'col-md-1'%>
+                      <%= f.number_field :single, min: 0, class: 'col-md-1' %>
+                      <%= f.number_field :double, min: 0, class: 'col-md-1'%>
+                      <%= f.number_field :triple, min: 0, class: 'col-md-1' %>
+                      <%= f.number_field :hr, min: 0, class: 'col-md-1'%>
+                      <%= f.number_field :bb, min: 0, class: 'col-md-1' %>
+                      <%= f.number_field :error, min: 0, class: 'col-md-1'%>
+                      <%= f.number_field :fc, min: 0, class: 'col-md-1' %>
+                      <%= f.number_field :hb, min: 0, class: 'col-md-1'%>
+                      <%= f.number_field :wp, min: 0, class: 'col-md-1' %>
+                      <%= f.number_field :pb, min: 0, class: 'col-md-1'%>
                 </div>
               </div>
               <div class='col-md-6 stats-table'>
                 <div class='col-md-12 stats-table'>
-                      <%= f.text_field :sb, class: 'col-md-1' %>
-                      <%= f.text_field :rbi, class: 'col-md-1'%>
-                      <%= f.text_field :r, class: 'col-md-1' %>
-                      <%= f.text_field :earned_run, class: 'col-md-1'%>
-                      <%= f.text_field :sac, class: 'col-md-1' %>
-                      <%= f.text_field :k, class: 'col-md-1'%>
+                      <%= f.number_field :sb, min: 0, class: 'col-md-1' %>
+                      <%= f.number_field :rbi, min: 0, class: 'col-md-1'%>
+                      <%= f.number_field :r, min: 0, class: 'col-md-1' %>
+                      <%= f.number_field :earned_run, min: 0, class: 'col-md-1'%>
+                      <%= f.number_field :sac, min: 0, class: 'col-md-1' %>
+                      <%= f.number_field :k, min: 0, class: 'col-md-1'%>
                 </div>
               </div>
             </row>
@@ -174,17 +174,15 @@
 
 
 
-
+    <row class='col-md-12 left-margin-10px'>
+    </row>
     <row class='col-md-12 left-margin-10px'>
       <div class='col-md-6 stats-table'>
         <div class='col-md-2'>Name</div>
         <div class='col-md-10 stats-table'>
 
             <div class="col-md-1">
-              <p>IP</p>
-            </div>
-            <div class="col-md-1">
-              <p>PIP</p>
+              <p>Retired</p>
             </div>
             <div class="col-md-1">
               <p>R</p>
@@ -216,13 +214,14 @@
             <div class="col-md-1">
               <p>3B</p>
             </div>
+            <div class="col-md-1">
+              <p>HR</p>
+            </div>
         </div>
       </div>
       <div class="col-md-6 stats-table">
           <div class="col-md-12 stats-table">
-            <div class="col-md-1">
-              <p>HR</p>
-            </div>
+
             <div class="col-md-1">
               <p>K</p>
             </div>
@@ -254,28 +253,27 @@
                 <div class='col-md-6 stats-table'>
                   <div class='col-md-2'> <%= player.last_name %> </div>
                   <div class='col-md-10 stats-table'>
-                        <%= f.text_field :full_innings, class: 'col-md-1' %>
-                        <%= f.text_field :partial_innings, class: 'col-md-1'%>
-                        <%= f.text_field :r, class: 'col-md-1'%>
-                        <%= f.text_field :er, class: 'col-md-1' %>
-                        <%= f.text_field :sv, class: 'col-md-1' %>
-                        <%= f.text_field :cg, class: 'col-md-1'%>
-                        <%= f.text_field :bf, class: 'col-md-1'%>
-                        <%= f.text_field :bb, class: 'col-md-1' %>
-                        <%= f.text_field :h, class: 'col-md-1'%>
-                        <%= f.text_field :single, class: 'col-md-1' %>
-                        <%= f.text_field :double, class: 'col-md-1'%>
-                        <%= f.text_field :triple, class: 'col-md-1' %>
+                        <%= f.number_field :batters_retired, min: 0, class: 'col-md-1' %>
+                        <%= f.number_field :r, min: 0, class: 'col-md-1'%>
+                        <%= f.number_field :er, min: 0, class: 'col-md-1' %>
+                        <%= f.number_field :sv, min: 0, class: 'col-md-1' %>
+                        <%= f.number_field :cg, min: 0, class: 'col-md-1'%>
+                        <%= f.number_field :bf, min: 0, class: 'col-md-1'%>
+                        <%= f.number_field :bb, min: 0, class: 'col-md-1' %>
+                        <%= f.number_field :h, min: 0, class: 'col-md-1'%>
+                        <%= f.number_field :single, min: 0, class: 'col-md-1' %>
+                        <%= f.number_field :double, min: 0, class: 'col-md-1'%>
+                        <%= f.number_field :triple, min: 0, class: 'col-md-1' %>
+                        <%= f.number_field :hr, min: 0, class: 'col-md-1'%>
                   </div>
                 </div>
                 <div class='col-md-6 stats-table'>
                   <div class='col-md-12 stats-table'>
-                        <%= f.text_field :hr, class: 'col-md-1'%>
-                        <%= f.text_field :k, class: 'col-md-1' %>
-                        <%= f.text_field :wp, class: 'col-md-1'%>
-                        <%= f.text_field :hb, class: 'col-md-1'%>
-                        <%= f.text_field :bk, class: 'col-md-1' %>
-                        <%= f.text_field :sb, class: 'col-md-1'%>
+                        <%= f.number_field :k, min: 0, class: 'col-md-1' %>
+                        <%= f.number_field :wp, min: 0, class: 'col-md-1'%>
+                        <%= f.number_field :hb, min: 0, class: 'col-md-1'%>
+                        <%= f.number_field :bk, min: 0, class: 'col-md-1' %>
+                        <%= f.number_field :sb, min: 0, class: 'col-md-1'%>
                   </div>
                 </div>
               </row>
