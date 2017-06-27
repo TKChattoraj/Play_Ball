@@ -75,74 +75,158 @@
 
 
 
+  <div class="col-md-2">
+    <p>Season Total</p>
+  </div>
+  <div class="col-md-10">
+    <div class="col-md-6 stats-table">
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.g %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.pa %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.ab %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.h %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.bb %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.b1 %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.b2 %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.b3 %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.hr %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.k %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.sf %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.err %></p>
+      </div>
+    </div>
+    <div class="col-md-6 stats-table">
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.hb %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.rbi %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.r %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.sb%></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= @player.hitting_total.cs %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= number_with_precision(@player.hitting_total.ave, :precision =>3) %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= number_with_precision(@player.hitting_total.obp, :precision => 3) %></p>
+      </div>
+      <div class="col-md-1">
+        <p><%= number_with_precision(@player.hitting_total.slg, :precision => 3) %></p>
+      </div>
+    </div>
+  </div>
+
+  <% @player_hitting_stats.each do |hs| %>
+
     <div class="col-md-2">
-      <p>Season Total</p>
+      <% if hs.game.home == @player.team %>
+        <p><%= link_to "vs. #{hs.game.visitors.name}", hs.game.visitors %></p>
+      <% elsif hs.game.visitors == @player.team %>
+        <p><%= link_to "vs. #{hs.game.home.name}", hs.game.home %></p>
+      <% else %>
+        <p>Some Team</p>
+      <% end %>
     </div>
     <div class="col-md-10">
       <div class="col-md-6 stats-table">
         <div class="col-md-1">
-          <p><%= @player.hitting_total.g %></p>
+          <p>-</p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.pa %></p>
+          <p><%= hs.pa %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.ab %></p>
+          <p><%= hs.ab %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.h %></p>
+          <p><%= hs.single + hs.double + hs.triple + hs.hr %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.bb %></p>
+          <p><%= hs.bb %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.b1 %></p>
+          <p><%= hs.single %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.b2 %></p>
+          <p><%= hs.double %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.b3 %></p>
+          <p><%= hs.triple %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.hr %></p>
+          <p><%= hs.hr %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.k %></p>
+          <p><%= hs.k %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.sf %></p>
+          <p><%= hs.sac %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.err %></p>
+          <p><%= hs.error %></p>
         </div>
       </div>
       <div class="col-md-6 stats-table">
         <div class="col-md-1">
-          <p><%= @player.hitting_total.hb %></p>
+          <p><%= hs.hb %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.rbi %></p>
+          <p><%= hs.rbi %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.r %></p>
+          <p><%= hs.r %></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.sb%></p>
+          <p><%= hs.sb%></p>
         </div>
         <div class="col-md-1">
-          <p><%= @player.hitting_total.cs %></p>
+          <p>-</p>
         </div>
         <div class="col-md-1">
-          <p><%= number_with_precision(@player.hitting_total.ave, :precision =>3) %></p>
+          <p>-</p>
         </div>
         <div class="col-md-1">
-          <p><%= number_with_precision(@player.hitting_total.obp, :precision => 3) %></p>
+          <p>-</p>
         </div>
         <div class="col-md-1">
-          <p><%= number_with_precision(@player.hitting_total.slg, :precision => 3) %></p>
+          <p>-</p>
         </div>
       </div>
     </div>
+  <% end %>
 
-  </div>
+
+
+
+
+
+</div>
