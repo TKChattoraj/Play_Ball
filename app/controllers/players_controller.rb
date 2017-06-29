@@ -50,11 +50,13 @@ def show
   @player = Player.find(params[:id])
 
   @player_hitting_total = HittingTotal.find_by(player_id: @player.id)
-  @player_pitching_total = PitchingTotal.find_by(player_id: @player.id)
-
+  @player_pitching_total = @player.pitching_total
 
   @player_hitting_stats = @player.game_hitting_stats
-  @player_pitching_stats = @player.game_pitching_stats
+
+  if @player.pitcher?
+    @player_pitching_stats = @player.game_pitching_stats
+  end
 
 end
 
