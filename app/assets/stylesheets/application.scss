@@ -26,6 +26,7 @@
 }
 
 
+
  .container {
    width: auto;
  }
@@ -37,15 +38,36 @@
    margin-top: 5px;
  }
 
- .stats-table {
-   padding-left: 0px;
-   padding-right: 0px;
- }
-
- .stats-heading {
-   margin-top: 0px;
- }
 
  .left-margin-10px {
   margin-left: 10px;
+}
+
+
+.stats-input {
+  padding-right: 0px;
+  padding-left: 0px;
+  width: 35px;
+}
+
+.score-table {
+  width: 50%
+}
+
+.field {
+  font-size: 100%;
+  text-align: center;
+  width: 100%;
+  margin-left: 15%;
+  margin-right: 15%;
+  padding-right: 0%;
+}
+
+.stats-table {
+  padding-left: 5%;
+  padding-right: 25%;
+}
+
+.stats-heading {
+  margin-top: 0px;
 }
