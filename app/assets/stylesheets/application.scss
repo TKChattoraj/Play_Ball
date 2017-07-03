@@ -16,6 +16,16 @@
   @import "bootstrap-sprockets";
   @import "bootstrap";
 
+
+@media (min-width: 640px) {
+  html {font-size: 112%;}
+}
+
+@media (min-width: 1024px) {
+  html {font-size: 120%;}
+}
+
+
  .container {
    width: auto;
  }
