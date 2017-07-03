@@ -1,7 +1,7 @@
 user = User.new(
-    first_name:  "Chuck",
-    last_name:  "Tanner",
-    email: "chuck@tanner.com",
+    first_name:  "Sparky",
+    last_name:  "Anderson",
+    email: "sparky@anderson.com",
     cell:  "513-555-5555",
     password:  "hello_world",
     password_confirmation: "hello_world"
@@ -32,7 +32,7 @@ user.save
 puts "User: #{user.last_name} created."
 
 team = Team.new(
-    name:  "Pirates",
+    name:  "Reds",
     wins: 15,
     losses: 7
 )
@@ -135,6 +135,55 @@ player = Player.new(
 )
 player.save
 PlayersPosition.create(player_id: player.id, position_id: 7)
+hitting_total = HittingTotal.new
+hitting_total.set_initial_totals
+hitting_total.player_id = player.id
+hitting_total.save
+
+
+player = Player.new(
+  first_name: "Reggie",
+  last_name: "Jackson",
+  birthdate: 2017-01-01,
+  bats: 1,
+  throws: 0,
+  team_id: 2
+)
+player.save
+PlayersPosition.create(player_id: player.id, position_id: 7)
+hitting_total = HittingTotal.new
+hitting_total.set_initial_totals
+hitting_total.player_id = player.id
+hitting_total.save
+
+
+
+player = Player.new(
+  first_name: "Chris",
+  last_name: "Chambliss",
+  birthdate: 2017-01-01,
+  bats: 1,
+  throws: 0,
+  team_id: 2
+)
+player.save
+PlayersPosition.create(player_id: player.id, position_id: 3)
+hitting_total = HittingTotal.new
+hitting_total.set_initial_totals
+hitting_total.player_id = player.id
+hitting_total.save
+
+
+player = Player.new(
+  first_name: "Mickey",
+  last_name: "Rivers",
+  birthdate: 2017-01-01,
+  bats: 1,
+  throws: 0,
+  team_id: 2
+)
+player.save
+PlayersPosition.create(player_id: player.id, position_id: 3)
 hitting_total = HittingTotal.new
 hitting_total.set_initial_totals
 hitting_total.player_id = player.id

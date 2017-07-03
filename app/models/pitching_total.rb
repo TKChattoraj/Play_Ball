@@ -25,6 +25,7 @@ class PitchingTotal < ActiveRecord::Base
     self.hb = 0
     self.bk = 0
     self.sb = 0
+    self.cs = 0
 
     self.era = 0.000
 

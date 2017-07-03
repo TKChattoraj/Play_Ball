@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319235903) do
+ActiveRecord::Schema.define(version: 20170624213757) do
 
   create_table "game_hitting_stats", force: :cascade do |t|
     t.integer  "player_id"
@@ -41,18 +41,17 @@ ActiveRecord::Schema.define(version: 20170319235903) do
   create_table "game_pitching_stats", force: :cascade do |t|
     t.integer  "player_id"
     t.integer  "game_id"
-    t.integer  "full_innings"
-    t.integer  "partial_innings"
+    t.integer  "batters_retired"
     t.integer  "r"
     t.integer  "er"
-    t.integer  "save"
+    t.integer  "sv"
     t.integer  "cg"
     t.integer  "bf"
     t.integer  "bb"
     t.integer  "h"
     t.integer  "single"
     t.integer  "double"
-    t.integer  "tripple"
+    t.integer  "triple"
     t.integer  "hr"
     t.integer  "k"
     t.integer  "wp"
@@ -61,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170319235903) do
     t.integer  "sb"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "cs"
   end
 
   create_table "games", force: :cascade do |t|
@@ -151,8 +151,9 @@ ActiveRecord::Schema.define(version: 20170319235903) do
     t.integer  "cs"
     t.decimal  "era"
     t.integer  "player_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "batters_retired"
   end
 
   add_index "pitching_totals", ["player_id"], name: "index_pitching_totals_on_player_id"

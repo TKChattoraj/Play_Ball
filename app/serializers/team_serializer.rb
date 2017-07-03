@@ -1,3 +1,7 @@
 class TeamSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :label
+
+  def label
+    object.name
+  end
 end
