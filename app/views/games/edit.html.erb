@@ -10,9 +10,9 @@
     <thead>
       <tr>
         <th></th>
-        <th><h1 class='RHE'>R</h1></th>
-        <th><h1 class='RHE'>H</h1></th>
-        <th><h1 class='RHE'>E</h1></th>
+        <th><h3 class='RHE'>R</h3></th>
+        <th><h3 class='RHE'>H</h3></th>
+        <th><h3 class='RHE'>E</h3></th>
       </tr>
     </thead>
     <tbody>
@@ -25,29 +25,29 @@
 
         <tr>
           <td>
-            <h1 class='team-score'><%= @game.visitors.name %></h1>
+            <h3 class='team-score'><%= @game.visitors.name %></h3>
           </td>
-          <td> <h1 class='team-score'>
+          <td> <h3 class='team-score'>
               <%= g.number_field :visitor_runs, min: 0, class: 'field form-control'%>
-              </h1>
+            </h3>
           </td>
-          <td><h1 class='team-score'><%= g.number_field :visitor_hits, min: 0, class: 'field form-control'%></h1>
+          <td><h3 class='team-score'><%= g.number_field :visitor_hits, min: 0, class: 'field form-control'%></h3>
           </td>
-          <td><h1 class='team-score'><%= g.number_field :visitor_errors, min: 0, class: 'field form-control'%></h1>
+          <td><h3 class='team-score'><%= g.number_field :visitor_errors, min: 0, class: 'field form-control'%></h3>
           </td>
         </tr>
         <tr>
           <td>
-            <h1 class='team-score'><%= @game.home.name %></h1>
+            <h3 class='team-score'><%= @game.home.name %></h3>
           </td>
           <td>
-              <h1 class='team-score'><%= g.number_field :home_runs, min: 0, class: 'field form-control'%></h1>
+              <h3 class='team-score'><%= g.number_field :home_runs, min: 0, class: 'field form-control'%></h3>
           </td>
           <td>
-              <h1 class='team-score'><%= g.number_field :home_hits, min: 0, class: 'field form-control'%></h1>
+              <h3 class='team-score'><%= g.number_field :home_hits, min: 0, class: 'field form-control'%></h3>
           </td>
           <td>
-              <h1 class='team-score'><%= g.number_field :home_errors, min: 0, class: 'field form-control'%></h1>
+              <h3 class='team-score'><%= g.number_field :home_errors, min: 0, class: 'field form-control'%></h3>
           </td>
         </tr>
     <% end %>
