@@ -17,12 +17,33 @@
   @import "bootstrap";
 
 
-@media (min-width: 640px) {
+@media only screen and (max-width: 640px) {
   html {font-size: 112%;}
+  .cabl-img {
+    width: 180px;
+    height: 180px;
+    padding: 15px;
+  }
 }
+ @media only screen and (min-width: 641px) {
+   html {font-size: 115%;}
+   .cabl-img {
+     width: 240px;
+     height: 240px;
+     padding: 15px
+   }
+ }
 
-@media (min-width: 1024px) {
+
+
+
+@media only screen and (min-width: 1024px) {
   html {font-size: 120%;}
+  .cabl-img {
+    width: 304px;
+    height: 304px;
+    padding: 15px;
+  }
 }
 
 
@@ -51,7 +72,7 @@
 }
 
 .score-table {
-  width: 50%
+  width: 100%
 }
 
 .field {
