@@ -47,16 +47,18 @@
             </div>
         <% end %>
       </div>
-      <div class="row">
-        <div class="col-md-2">
+      <div class='row'>
+        <div class="col-xs-12 col-sm-12 col-md-2 main-div dirt">
           <%= image_tag("CABL-BRICK-WALLA1.png", class: "cabl-img") %>
         </div>
-        <div class="col-md-10">
 
-          <%= yield %>
-
+        <div class='col-xs-12 col-sm-12 col-md-7half main-div grass'>
+            <%= yield %>
         </div>
 
+        <div class='col-xs-12 col-sm-12 col-md-2 main-div dirt'>
+          <div></div>
+        </div>
       </div>
 
   </div>

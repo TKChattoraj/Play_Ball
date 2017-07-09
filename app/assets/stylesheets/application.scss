@@ -17,39 +17,85 @@
   @import "bootstrap";
 
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 767px) {
   html {font-size: 112%;}
-  .cabl-img {
-    width: 180px;
-    height: 180px;
-    padding: 15px;
+
+  .container {
+    width: auto;
+  }
+
+}
+@media only screen and (min-width: 768px) {
+  html {font-size: 112%;}
+
+  .container {
+    width: 768px;
   }
 }
- @media only screen and (min-width: 641px) {
+
+
+
+ @media only screen and (min-width: 992px) {
    html {font-size: 115%;}
-   .cabl-img {
-     width: 240px;
-     height: 240px;
-     padding: 15px
+
+   .container {
+     width: 992px;
    }
  }
 
 
-
-
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1200px) {
   html {font-size: 120%;}
-  .cabl-img {
-    width: 304px;
-    height: 304px;
-    padding: 15px;
+
+  .container {
+    width: 1200px;
+    background-color: #eee;
+  }
+
+  .col-md-7half {
+    width: 62.5%;
   }
 }
 
+.main-div {
+  // border-style: solid;
+  // border-width: medium;
+  height: 300px;
+  margin: 3px;
+  border-radius: 6px;
+  padding: 15px;
+
+}
+
+.dirt {
+  background-color: #c4856a;
+}
+
+.grass {
+  background-color: #b1c489;
+}
+
+.col-xs-7half, .col-sm-7half, .col-md-7half {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.cabl-img {
+  width: 100%;
+
+
+  padding: 15px;
+}
 
 
  .container {
-   width: auto;
+   padding-right: 15px;
+   padding-left: 15px;
+   margin-right: auto;
+   margin-left: auto;
+   min-height: 1000px;
  }
  .user-info {
    margin-top: 9px;
@@ -69,6 +115,9 @@
   padding-right: 0px;
   padding-left: 0px;
   width: 35px;
+  margin: 0px;
+  border: none;
+  background-color:rgba(255, 255, 255, 0);
 }
 
 .score-table {
@@ -82,6 +131,8 @@
   margin-left: 15%;
   margin-right: 15%;
   padding-right: 0%;
+  border: none;
+  background-color:rgba(255, 255, 255, 0);
 }
 
 .stats-table {

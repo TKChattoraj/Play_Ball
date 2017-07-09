@@ -1,76 +1,34 @@
-<div class=col-md-6>
-<h2 class="text-center">Standings</h1>
+<div class='col-xs-12 col-sm-12 col-md-4'>
+  <table class='table table-striped table-responsive'>
+    <thead>
+      <tr>
+        <th></th>
+        <th><h5>W</h5></th>
+        <th><h5>L</h5></th>
+        <th><h5>Pct.</h5></th>
+        <th><h5>GB</h5></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @teams.each do |t| %>
+        <tr>
+          <td><%= link_to t.name, t %></td>
+          <td><%= t.wins %></td>
+          <td><%= t.losses %></td>
 
-<div class="row left-margin-10px">
-  <div class="row">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-2">
-      <h3>W</h3>
-    </div>
-    <div class="col-md-2">
-      <h3>L</h3>
-    </div>
-    <div class="col-md-2">
-      <h3>Pct.</h3>
-    </div>
-    <div class="col-md-2">
-      <h3>GB</h3>
-    </div>
-  </div>
-  <% @teams.each do |t| %>
-    <div class="row">
+          <% if t.winning_percentage %>
+            <td><%= t.winning_percentage %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
 
-      <div class="col-md-4">
-        <div class="media">
-          <div class="media-body">
-            <h3 class="media-heading">
-              <%= link_to t.name, t %>
-            </h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-            <div class="media">
-              <div class="media-body">
-                <h3 class="media-heading">
-                  <%= t.wins %>
-                </h3>
-              </div>
-            </div>
-      </div>
-      <div class="col-md-2">
-            <div class="media">
-              <div class="media-body">
-                <h3 class="media-heading">
-                  <%= t.losses %>
-                </h3>
-              </div>
-            </div>
-      </div>
-      <div class="col-md-2">
-        <div class="media">
-          <div class="media-body">
-            <h3 class="media-heading">
-              <% if t.winning_percentage %>
-                <%= t.winning_percentage %>
-              <% end %>
-            </h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-            <div class="media">
-              <div class="media-body">
-                <h3 class="media-heading">
-                  <% if t.games_back %>
-                    <%= t.games_back %>
-                  <% end %>
-                </h3>
-              </div>
-            </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+          <% if t.games_back %>
+            <td><%= t.games_back %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

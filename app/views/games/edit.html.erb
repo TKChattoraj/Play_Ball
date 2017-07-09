@@ -1,63 +1,57 @@
 
 
+  <div class='col-xs-12 col-sm-12 col-md-10'>
+    <row class='col-md-12 left-margin-10px stats-table'>
+     <div class='col-md-6'>
+      <table class="table table-responsive score-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th><h3 class='RHE'>R</h3></th>
+            <th><h3 class='RHE'>H</h3></th>
+            <th><h3 class='RHE'>E</h3></th>
+          </tr>
+        </thead>
+        <tbody>
 
 
 
+        <%= form_tag(game_path, method: "put") do %>
 
-<row class='col-md-12 left-margin-10px stats-table'>
- <div class='col-md-6'>
-  <table class="table table-responsive score-table">
-    <thead>
-      <tr>
-        <th></th>
-        <th><h3 class='RHE'>R</h3></th>
-        <th><h3 class='RHE'>H</h3></th>
-        <th><h3 class='RHE'>E</h3></th>
-      </tr>
-    </thead>
-    <tbody>
+        <%= fields_for 'game', @game do |g| %>
 
-
-
-<%= form_tag(game_path, method: "put") do %>
-
-    <%= fields_for 'game', @game do |g| %>
-
-        <tr>
-          <td>
-            <h3 class='team-score'><%= @game.visitors.name %></h3>
-          </td>
-          <td> <h3 class='team-score'>
-              <%= g.number_field :visitor_runs, min: 0, class: 'field form-control'%>
-            </h3>
-          </td>
-          <td><h3 class='team-score'><%= g.number_field :visitor_hits, min: 0, class: 'field form-control'%></h3>
-          </td>
-          <td><h3 class='team-score'><%= g.number_field :visitor_errors, min: 0, class: 'field form-control'%></h3>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <h3 class='team-score'><%= @game.home.name %></h3>
-          </td>
-          <td>
-              <h3 class='team-score'><%= g.number_field :home_runs, min: 0, class: 'field form-control'%></h3>
-          </td>
-          <td>
-              <h3 class='team-score'><%= g.number_field :home_hits, min: 0, class: 'field form-control'%></h3>
-          </td>
-          <td>
-              <h3 class='team-score'><%= g.number_field :home_errors, min: 0, class: 'field form-control'%></h3>
-          </td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
-<div class='col-md-6'>
-
-</div>
-
+            <tr>
+              <td>
+                <h3 class='team-score'><%= @game.visitors.name %></h3>
+              </td>
+              <td> <h3 class='team-score'>
+                  <%= g.number_field :visitor_runs, min: 0, class: 'field form-control'%>
+                </h3>
+              </td>
+              <td><h3 class='team-score'><%= g.number_field :visitor_hits, min: 0, class: 'field form-control'%></h3>
+              </td>
+              <td><h3 class='team-score'><%= g.number_field :visitor_errors, min: 0, class: 'field form-control'%></h3>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h3 class='team-score'><%= @game.home.name %></h3>
+              </td>
+              <td>
+                  <h3 class='team-score'><%= g.number_field :home_runs, min: 0, class: 'field form-control'%></h3>
+              </td>
+              <td>
+                  <h3 class='team-score'><%= g.number_field :home_hits, min: 0, class: 'field form-control'%></h3>
+              </td>
+              <td>
+                  <h3 class='team-score'><%= g.number_field :home_errors, min: 0, class: 'field form-control'%></h3>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </row>
 
   <row class='col-md-12 left-margin-10px stats-table'>
