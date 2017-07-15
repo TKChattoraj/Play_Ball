@@ -18,7 +18,7 @@
 
 
 @media only screen and (max-width: 767px) {
-  html {font-size: 112%;}
+  html {font-size: 80%;}
 
   .container {
     width: auto;
@@ -26,7 +26,7 @@
 
 }
 @media only screen and (min-width: 768px) {
-  html {font-size: 112%;}
+  html {font-size: 90%;}
 
   .container {
     width: 768px;
@@ -36,7 +36,7 @@
 
 
  @media only screen and (min-width: 992px) {
-   html {font-size: 115%;}
+   html {font-size: 100%;}
 
    .container {
      width: 992px;
@@ -45,7 +45,7 @@
 
 
 @media only screen and (min-width: 1200px) {
-  html {font-size: 120%;}
+  html {font-size: 100%;}
 
   .container {
     width: 1200px;
@@ -55,16 +55,19 @@
   .col-md-7half {
     width: 62.5%;
   }
+  .col-md-9half {
+    width: 79.16%;
+  }
 }
 
 .main-div {
   // border-style: solid;
   // border-width: medium;
-  height: 300px;
+
   margin: 3px;
   border-radius: 6px;
   padding: 15px;
-
+  overflow: auto;
 }
 
 .dirt {
@@ -73,11 +76,19 @@
 
 .grass {
   background-color: #b1c489;
+
 }
 
 .col-xs-7half, .col-sm-7half, .col-md-7half {
   position: relative;
   min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-xs-9half, .col-sm-9half, .col-md-9half {
+  position: relative;
+  min-ehight: 1px;
   padding-right: 15px;
   padding-left: 15px;
 }
@@ -109,7 +120,14 @@
  .left-margin-10px {
   margin-left: 10px;
 }
+ .display-flex {
+   display: flex;
+ }
 
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #bfc6b1
+}
 
 .stats-input {
   padding-right: 0px;
@@ -135,10 +153,13 @@
   background-color:rgba(255, 255, 255, 0);
 }
 
+
+
 .stats-table {
-  padding-left: 5%;
-  padding-right: 25%;
+
 }
+
+
 
 .stats-heading {
   margin-top: 0px;
