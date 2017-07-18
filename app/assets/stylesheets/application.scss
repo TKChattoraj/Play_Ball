@@ -18,10 +18,18 @@
 
 
 @media only screen and (max-width: 767px) {
-  html {font-size: 80%;}
+  html {font-size: 70%;}
 
   .container {
-    width: auto;
+    width: 95%;
+  }
+
+  .cabl-img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+
   }
 
 }
@@ -31,6 +39,18 @@
   .container {
     width: 768px;
   }
+  .cabl-img {
+    display: inline;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+
+  }
+
+  .col-sm-9half {
+    width: 79.6%;
+  }
+
 }
 
 
@@ -40,6 +60,9 @@
 
    .container {
      width: 992px;
+   }
+   .col-md-9half {
+     width: 79.16%;
    }
  }
 
@@ -52,13 +75,18 @@
     background-color: #eee;
   }
 
-  .col-md-7half {
-    width: 62.5%;
-  }
-  .col-md-9half {
-    width: 79.16%;
-  }
+
 }
+
+
+.col-xs-9half, .col-sm-9half, .col-md-9half {
+  position: relative;
+  padding-right: 15px;
+  padding-left: 15px;
+
+}
+
+
 
 .main-div {
   // border-style: solid;
@@ -68,6 +96,7 @@
   border-radius: 6px;
   padding: 15px;
   overflow: auto;
+  min-height: 230px;
 }
 
 .dirt {
@@ -79,50 +108,34 @@
 
 }
 
-.col-xs-7half, .col-sm-7half, .col-md-7half {
-  position: relative;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.col-xs-9half, .col-sm-9half, .col-md-9half {
-  position: relative;
-  min-ehight: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-}
 
 .cabl-img {
-  width: 100%;
-
-
   padding: 15px;
 }
 
 
- .container {
-   padding-right: 15px;
-   padding-left: 15px;
-   margin-right: auto;
-   margin-left: auto;
-   min-height: 1000px;
- }
- .user-info {
-   margin-top: 9px;
- }
-
- .nav {
-   margin-top: 5px;
- }
-
-
- .left-margin-10px {
-  margin-left: 10px;
+.container {
+ padding-right: 15px;
+ padding-left: 15px;
+ margin-right: auto;
+ margin-left: auto;
+ min-height: 1000px;
 }
- .display-flex {
-   display: flex;
- }
+.user-info {
+ margin-top: 9px;
+}
+
+.nav {
+ margin-top: 5px;
+}
+
+
+.left-margin-10px {
+margin-left: 10px;
+}
+.display-flex {
+ display: flex;
+}
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {

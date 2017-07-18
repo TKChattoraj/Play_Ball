@@ -45,6 +45,7 @@ class GamesController < ApplicationController
 
 
   def update
+    puts("in update")
     @game = Game.find(params[:id])
 
     @game.update(game_score_params)
@@ -91,7 +92,7 @@ class GamesController < ApplicationController
 
       hitting_stats.save
     end
-
+    puts("updated hitting")
     pitching = pitching_params
     if pitching
       pitching.each do |key, value|
@@ -119,6 +120,7 @@ class GamesController < ApplicationController
       end
     end
     @game.save
+    puts("updated pitching")
     @players.each do |player|
       calculate_hitting_totals(player)
 
@@ -127,7 +129,7 @@ class GamesController < ApplicationController
       end
 
     end
-
+    puts("redirecting to team")
     redirect_to team_path(@team)
 
 

@@ -1,8 +1,10 @@
 
-
+<%= form_tag(game_path, method: "put") do %>
   <div class='col-xs-12 col-sm-12 col-md-10'>
     <row class='col-md-12 left-margin-10px stats-table'>
      <div class='col-md-6'>
+
+
       <table class="table table-responsive score-table">
         <thead>
           <tr>
@@ -12,12 +14,10 @@
             <th><h3 class='RHE'>E</h3></th>
           </tr>
         </thead>
+
+
+
         <tbody>
-
-
-
-        <%= form_tag(game_path, method: "put") do %>
-
         <%= fields_for 'game', @game do |g| %>
 
             <tr>
@@ -54,134 +54,134 @@
   </div>
 </row>
 
-  <row class='col-md-12 left-margin-10px stats-table'>
-    <table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-              <th>Name</th>
-              <th>AB</th>
-              <th>PA</th>
-              <th>1b</th>
-              <th>2b</th>
-              <th>3b</th>
-              <th>Hr</th>
-              <th>BB</th>
-              <th>E</th>
-              <th>FC</th>
-              <th>HB</th>
-              <th>SB</th>
-              <th>RBI</th>
-              <th>R</th>
-              <th>ER</th>
-              <th>SAC</th>
-              <th>K</th>
-        </tr>
-
-      <tbody>
-
-  <!-- <row class='col-md-12'> -->
-    <% @players.each_with_index do  |player, i| %>
-      <%= fields_for 'players[]', player do |p| %>
-      <!-- -->
-        <% player_hitting_stats = player.game_hitting_stats.find{|hs| hs.game_id == @game.id} %>
-        <% if player_hitting_stats %>
-          <%= p.hidden_field(:id) %>
-          <%= fields_for 'game_hitting_stats[]', player_hitting_stats do |f| %>
-            <tr>
-                <td class='col-md-2'> <%= player.last_name %> </td>
-
-                <td><%= f.number_field :ab, min: 0, class: 'col-md-3 stats-input' %></td>
-                <td><%= f.number_field :pa, min: 0, class: 'col-md-3 stats-input'%></td>
-                <td><%= f.number_field :single, min: 0, class: 'col-md-3 stats-input' %></td>
-                <td><%= f.number_field :double, min: 0, class: 'col-md-3 stats-input'%></td>
-                <td><%= f.number_field :triple, min: 0, class: 'col-md-3 stats-input' %></td>
-                <td><%= f.number_field :hr, min: 0, class: 'col-md-3 stats-input'%></td>
-                <td><%= f.number_field :bb, min: 0, class: 'col-md-3 stats-input' %></td>
-                <td><%= f.number_field :error, min: 0, class: 'col-md-3 stats-input'%></td>
-                <td><%= f.number_field :fc, min: 0, class: 'col-md-3 stats-input' %></td>
-                <td><%= f.number_field :hb, min: 0, class: 'col-md-3 stats-input'%></td>
-                <td><%= f.number_field :sb, min: 0, class: 'col-md-3 stats-input' %></td>
-                <td><%= f.number_field :rbi, min: 0, class: 'col-md-3 stats-input'%></td>
-
-                <td><%= f.number_field :r, min: 0, class: 'col-md-3 stats-input' %></td>
-                <td><%= f.number_field :earned_run, min: 0, class: 'col-md-3 stats-input'%></td>
-                <td><%= f.number_field :sac, min: 0, class: 'col-md-3 stats-input' %></td>
-                <td><%= f.number_field :k, min: 0, class: 'col-md-3 stats-input'%></td>
-            </tr>
-          <% end %>
-         <% end %>
-
-      <% end %>
-    <% end %>
-
-    </tbody>
-    </table>
-  </row>
-
-  <row class='col-md-12 left-margin-10px stats-table'>
-    <table class='table table-striped table-responsive'>
-      <thead>
-        <tr>
+<row class='col-md-12 left-margin-10px stats-table'>
+  <table class="table table-striped table-responsive">
+    <thead>
+      <tr>
             <th>Name</th>
-            <th>Retired</th>
+            <th>AB</th>
+            <th>PA</th>
+            <th>1b</th>
+            <th>2b</th>
+            <th>3b</th>
+            <th>Hr</th>
+            <th>BB</th>
+            <th>E</th>
+            <th>FC</th>
+            <th>HB</th>
+            <th>SB</th>
+            <th>RBI</th>
             <th>R</th>
             <th>ER</th>
-            <th>SV</th>
-            <th>CG</th>
-            <th>BF</th>
-            <th>BB</th>
-            <th>H</th>
-            <th>1B</th>
-            <th>2B</th>
-            <th>3B</th>
-            <th>HR</th>
+            <th>SAC</th>
             <th>K</th>
-            <th>WP</th>
-            <th>HB</th>
-            <th>BK</th>
-            <th>SB</th>
-        </tr>
-      </thead>
+      </tr>
 
-      <tbody>
-        <% @players.each_with_index do  |player, i| %>
-          <% if player.positions.include?(Position.find(1)) %>
-            <%= fields_for 'players[]', player do |p| %>
-              <% player_pitching_stats = player.game_pitching_stats.find{|ps| ps.game_id == @game.id} %>
-              <%= p.hidden_field(:id) %>
+    <tbody>
 
-              <% if player_pitching_stats %>
-                <%= fields_for 'game_pitching_stats[]', player_pitching_stats do |f| %>
-                  <tr>
-                    <td><%= player.last_name %></td>
-                    <td><%= f.number_field :batters_retired, min: 0, class: 'col-md-3 stats-input' %></td>
-                    <td><%= f.number_field :r, min: 0, class: 'col-md-3 stats-input'%></td>
-                    <td><%= f.number_field :er, min: 0, class: 'col-md-3 stats-input' %></td>
-                    <td><%= f.number_field :sv, min: 0, class: 'col-md-3 stats-input' %></td>
-                    <td><%= f.number_field :cg, min: 0, class: 'col-md-3 stats-input'%></td>
-                    <td><%= f.number_field :bf, min: 0, class: 'col-md-3 stats-input'%></td>
-                    <td><%= f.number_field :bb, min: 0, class: 'col-md-3 stats-input'%></td>
-                    <td><%= f.number_field :h, min: 0, class: 'col-md-3 stats-input'%></td>
-                    <td><%= f.number_field :single, min: 0, class: 'col-md-3 stats-input' %></td>
-                    <td><%= f.number_field :double, min: 0, class: 'col-md-3 stats-input'%></td>
-                    <td><%= f.number_field :triple, min: 0, class: 'col-md-3 stats-input' %></td>
-                    <td><%= f.number_field :hr, min: 0, class: 'col-md-3 stats-input'%></td>
-                    <td><%= f.number_field :k, min: 0, class: 'col-md-3 stats-input' %></td>
-                    <td><%= f.number_field :wp, min: 0, class: 'col-md-3 stats-input'%></td>
-                    <td><%= f.number_field :hb, min: 0, class: 'col-md-3 stats-input'%></td>
-                    <td><%= f.number_field :bk, min: 0, class: 'col-md-3 stats-input' %></td>
-                    <td><%= f.number_field :sb, min: 0, class: 'col-md-3 stats-input'%></td>
-                  </tr>
-                <% end %>
+<!-- <row class='col-md-12'> -->
+  <% @players.each_with_index do  |player, i| %>
+    <%= fields_for 'players[]', player do |p| %>
+    <!-- -->
+      <% player_hitting_stats = player.game_hitting_stats.find{|hs| hs.game_id == @game.id} %>
+      <% if player_hitting_stats %>
+        <%= p.hidden_field(:id) %>
+        <%= fields_for 'game_hitting_stats[]', player_hitting_stats do |f| %>
+          <tr>
+              <td class='col-md-2'> <%= player.last_name %> </td>
+
+              <td><%= f.number_field :ab, min: 0, class: 'col-md-3 stats-input' %></td>
+              <td><%= f.number_field :pa, min: 0, class: 'col-md-3 stats-input'%></td>
+              <td><%= f.number_field :single, min: 0, class: 'col-md-3 stats-input' %></td>
+              <td><%= f.number_field :double, min: 0, class: 'col-md-3 stats-input'%></td>
+              <td><%= f.number_field :triple, min: 0, class: 'col-md-3 stats-input' %></td>
+              <td><%= f.number_field :hr, min: 0, class: 'col-md-3 stats-input'%></td>
+              <td><%= f.number_field :bb, min: 0, class: 'col-md-3 stats-input' %></td>
+              <td><%= f.number_field :error, min: 0, class: 'col-md-3 stats-input'%></td>
+              <td><%= f.number_field :fc, min: 0, class: 'col-md-3 stats-input' %></td>
+              <td><%= f.number_field :hb, min: 0, class: 'col-md-3 stats-input'%></td>
+              <td><%= f.number_field :sb, min: 0, class: 'col-md-3 stats-input' %></td>
+              <td><%= f.number_field :rbi, min: 0, class: 'col-md-3 stats-input'%></td>
+
+              <td><%= f.number_field :r, min: 0, class: 'col-md-3 stats-input' %></td>
+              <td><%= f.number_field :earned_run, min: 0, class: 'col-md-3 stats-input'%></td>
+              <td><%= f.number_field :sac, min: 0, class: 'col-md-3 stats-input' %></td>
+              <td><%= f.number_field :k, min: 0, class: 'col-md-3 stats-input'%></td>
+          </tr>
+        <% end %>
+       <% end %>
+
+    <% end %>
+  <% end %>
+
+  </tbody>
+  </table>
+</row>
+
+<row class='col-md-12 left-margin-10px stats-table'>
+  <table class='table table-striped table-responsive'>
+    <thead>
+      <tr>
+          <th>Name</th>
+          <th>Retired</th>
+          <th>R</th>
+          <th>ER</th>
+          <th>SV</th>
+          <th>CG</th>
+          <th>BF</th>
+          <th>BB</th>
+          <th>H</th>
+          <th>1B</th>
+          <th>2B</th>
+          <th>3B</th>
+          <th>HR</th>
+          <th>K</th>
+          <th>WP</th>
+          <th>HB</th>
+          <th>BK</th>
+          <th>SB</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @players.each_with_index do  |player, i| %>
+        <% if player.positions.include?(Position.find(1)) %>
+          <%= fields_for 'players[]', player do |p| %>
+            <% player_pitching_stats = player.game_pitching_stats.find{|ps| ps.game_id == @game.id} %>
+            <%= p.hidden_field(:id) %>
+
+            <% if player_pitching_stats %>
+              <%= fields_for 'game_pitching_stats[]', player_pitching_stats do |f| %>
+                <tr>
+                  <td><%= player.last_name %></td>
+                  <td><%= f.number_field :batters_retired, min: 0, class: 'col-md-3 stats-input' %></td>
+                  <td><%= f.number_field :r, min: 0, class: 'col-md-3 stats-input'%></td>
+                  <td><%= f.number_field :er, min: 0, class: 'col-md-3 stats-input' %></td>
+                  <td><%= f.number_field :sv, min: 0, class: 'col-md-3 stats-input' %></td>
+                  <td><%= f.number_field :cg, min: 0, class: 'col-md-3 stats-input'%></td>
+                  <td><%= f.number_field :bf, min: 0, class: 'col-md-3 stats-input'%></td>
+                  <td><%= f.number_field :bb, min: 0, class: 'col-md-3 stats-input'%></td>
+                  <td><%= f.number_field :h, min: 0, class: 'col-md-3 stats-input'%></td>
+                  <td><%= f.number_field :single, min: 0, class: 'col-md-3 stats-input' %></td>
+                  <td><%= f.number_field :double, min: 0, class: 'col-md-3 stats-input'%></td>
+                  <td><%= f.number_field :triple, min: 0, class: 'col-md-3 stats-input' %></td>
+                  <td><%= f.number_field :hr, min: 0, class: 'col-md-3 stats-input'%></td>
+                  <td><%= f.number_field :k, min: 0, class: 'col-md-3 stats-input' %></td>
+                  <td><%= f.number_field :wp, min: 0, class: 'col-md-3 stats-input'%></td>
+                  <td><%= f.number_field :hb, min: 0, class: 'col-md-3 stats-input'%></td>
+                  <td><%= f.number_field :bk, min: 0, class: 'col-md-3 stats-input' %></td>
+                  <td><%= f.number_field :sb, min: 0, class: 'col-md-3 stats-input'%></td>
+                </tr>
               <% end %>
             <% end %>
           <% end %>
         <% end %>
-      </tbody>
-    </table>
-  </row>
+      <% end %>
+    </tbody>
+  </table>
+</row>
 
-  <row class='col-md-12 left-margin-10px stats-table'>
-    <%= submit_tag "Save", class: 'btn btn-success' %>
-  </row>
+<row class='col-md-12 left-margin-10px stats-table'>
+  <%= submit_tag "Save", class: 'btn btn-success' %>
+</row>
 <% end %>
