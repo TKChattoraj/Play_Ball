@@ -2,6 +2,17 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
+    dates = Set.new
+    @games.each do |g|
+      dates.add(g.date)
+    end
+    @dates_array = dates.to_a().sort
+    @games_hash = {}
+    @dates_array.each do |da|
+      @games_hash[da] = Game.where(date: da)
+    end
+
+
   end
 
 

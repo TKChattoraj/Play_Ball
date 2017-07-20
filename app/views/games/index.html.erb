@@ -1,8 +1,8 @@
 
-<div class="col-md-4 left-margin-10px">
+<!-- <div class="col-md-4 left-margin-10px"> -->
   <h1> Schedule</h1>
 
-  <% @games.each do |game| %>
+  <!-- <% @games.each do |game| %>
     <ul>
       <li>
         <div><%= link_to "#{game.home.name} v. #{game.visitors.name}", decide_game_view_url(id: game)%></div>
@@ -12,4 +12,14 @@
 
   <% end %>
   <%= render partial: 'games/games_tabs' %>
-</div>
+</div> -->
+
+
+
+<% @dates_array.each do |date| %>
+  <h2><%= date %></h2>
+  <ul>
+  <% @games_hash[date].each do |game| %>
+    <li><%= "#{game.visitors.name} v. #{game.home.name}" %> </li>
+  <% end %>
+<% end %>
