@@ -1,15 +1,23 @@
 
-<div class="col-md-4 left-margin-10px">
+<div class="left-margin-10px">
   <h1> Schedule</h1>
-  <% @dates_array.each do |date| %>
-    <h2><%= date %></h2>
-    <ul>
-      <% @games_hash[date].each do |game| %>
-          <li><%= link_to "#{game.home.name} v. #{game.visitors.name}", decide_game_view_url(id: game) %> </li>
+  <div id='schedule'>
+    <h2 id='month'>
+      <%= link_to '<', date: @date.prev_month %>
+      <%= @date.strftime('%B %Y') %>
+      <%= link_to'>', date: @date.next_month %>
+    </h2>
+    <%= calendar @date do |date| %>
+      <%= date.day %>
+      <% if @games_by_date[date] %>
+        <ul>
+          <% @games_by_date[date].each do |g| %>
+            <li><%= link_to "#{g.visitors.name} v. #{g.home.name}", decide_game_view_url(id: g) %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-  <% end %>
-
+    <% end %>
+  </div>
 
   <%= render partial: 'games/games_tabs' %>
 </div>
