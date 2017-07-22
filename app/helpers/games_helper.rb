@@ -1,3 +1,7 @@
+# Based on Ryan Bates RailsCasts 213 Calendars (revised) http://railscasts.com/episodes/213-calendars-revised?autoplay=true
+
+
+
 module GamesHelper
 
   def calendar(date = Date.today, &block)
