@@ -1,7 +1,10 @@
-<h2 class='margin-bottom-zero'><%= @player.first_name %></h2>
-<h1 class='margin-top-zero'><%= @player.last_name %></h1>
+<%= render partial: 'layouts/standings' %>
+
+
 
 <row class='col-md-12 left-margin-10px stats-table'>
+  <h2 class='margin-bottom-zero'><%= @player.first_name %></h2>
+  <h1 class='margin-top-zero'><%= @player.last_name %></h1>
   <table class="table table-striped table-responsive">
     <thead>
       <tr>

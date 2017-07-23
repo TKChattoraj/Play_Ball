@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def index
-    @teams = Team.order(winning_percentage: :desc)
-    Team.determine_games_back
+
+    #welcome#index view calls standings partial--which contains the index functionality embedded at the begining.  This is done because the standings partial is used throughout the site.
 
   end
 

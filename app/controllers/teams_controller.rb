@@ -5,6 +5,8 @@ def show
   @notes = @team.notes.recent
   @players = Player.on_team(@team)
 
+  # standings
+
 end
 
 end
