@@ -1,26 +1,26 @@
 <%= render partial: 'layouts/standings' %>
 
-<row class='col-md-12 left-margin-10px stats-table'>
-  <div class="left-margin-10px">
-    <h1> Schedule</h1>
-    <div id='schedule'>
-      <h2 id='month'>
-        <%= link_to '<', date: @date.prev_month %>
-        <%= @date.strftime('%B %Y') %>
-        <%= link_to'>', date: @date.next_month %>
-      </h2>
-      <%= calendar @date do |date| %>
-        <%= date.day %>
-        <% if @games_by_date[date] %>
-          <ul>
-            <% @games_by_date[date].each do |g| %>
-              <li><%= link_to "#{g.visitors.name} v. #{g.home.name}", decide_game_view_url(id: g) %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      <% end %>
-    </div>
 
-    <%= render partial: 'games/games_tabs' %>
+  <div class='col-xs-12mod col-sm-12mod col-md-12mod main-div grass'>
+    <div class='margin-15px'>
+      <div id='schedule'>
+        <h2 id='month'>
+          <%= link_to '<', date: @date.prev_month %>
+          <%= @date.strftime('%B %Y') %>
+          <%= link_to'>', date: @date.next_month %>
+        </h2>
+        <%= calendar @date do |date| %>
+          <%= date.day %>
+          <% if @games_by_date[date] %>
+            <ul>
+              <% @games_by_date[date].each do |g| %>
+                <li><%= link_to "#{g.visitors.name} v. #{g.home.name}", decide_game_view_url(id: g) %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+
+      <%= render partial: 'games/games_tabs' %>
+    </div>
   </div>
-</row>

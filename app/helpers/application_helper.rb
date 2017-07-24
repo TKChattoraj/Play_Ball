@@ -6,4 +6,12 @@ module ApplicationHelper
       content_tag :div, capture(&block), class: 'form-group'
     end
   end
+
+  def standings
+    @teams = Team.order(winning_percentage: :desc)
+    Team.determine_games_back
+  end
+
+
+
 end

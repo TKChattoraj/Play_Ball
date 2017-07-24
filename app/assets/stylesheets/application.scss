@@ -24,12 +24,20 @@
     width: 95%;
   }
 
+  .col-sx-12mod {
+    width: 99%;
+  }
+
   .cabl-img {
     display: block;
-    width: 200px;
-    height: 200px;
+    width: 225px;
+    height: 225px;
     margin: auto;
 
+  }
+
+  .main-div {
+    min-height: 250px;
   }
 
 }
@@ -47,8 +55,15 @@
 
   }
 
-  .col-sm-9half {
-    width: 79.6%;
+  .main-div {
+    min-height: 250px;
+  }
+
+  .col-sm-12mod {
+    width: 99%;
+  }
+  .col-sm-8mod {
+    width: 65.1666667%;
   }
 
 }
@@ -61,8 +76,15 @@
    .container {
      width: 992px;
    }
-   .col-md-9half {
-     width: 79.16%;
+   .col-md-12mod {
+     width: 99%;
+   }
+   .col-md-8mod {
+     width: 65.1666667%;
+   }
+
+   .main-div {
+     min-height: 386px;
    }
  }
 
@@ -79,24 +101,21 @@
 }
 
 
-.col-xs-9half, .col-sm-9half, .col-md-9half {
+.col-xs-12mod, .col-sm-12mod, .col-md-12mod, .col-xs-8mod, .col-sm-8mod, .col-md-8mod {
   position: relative;
   padding-right: 15px;
   padding-left: 15px;
 
 }
 
-
-
 .main-div {
   // border-style: solid;
   // border-width: medium;
 
-  margin: 3px;
+  margin: .5%;
   border-radius: 6px;
   padding: 15px;
   overflow: auto;
-  min-height: 386px;
 }
 
 .dirt {
@@ -139,7 +158,8 @@ margin-left: 10px;
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-  background-color: #bfc6b1
+  // background-color: #bfc6b1;
+  background-color: #b1c489;
 }
 
 .season-stats {
@@ -174,6 +194,10 @@ margin-left: 10px;
 
 .stats-table {
 
+}
+
+.margin-15px {
+  margin: 15px;
 }
 
 
