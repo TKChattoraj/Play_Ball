@@ -1,55 +1,59 @@
-New Game Form
-<h1>New Game </h1>
 
-  <div class="col-md-4">
+<%= render partial: 'layouts/standings' %>
+
+
+<div class='col-xs-12mod col-sm-12mod col-md-12mod main-div grass'>
+
+  <h3>Schedule a new game </h3>
+
+
     <%= form_for [@game] do |g| %>
-
-      <div class="form-group">
+      <div class="col-md-4 form-group">
         <row class='form-control'>
-          <div class='col-md-4'>
+          <div class='col-md-6'>
             <%= g.label :visitors_id, "Visitors" %>
           </div>
-          <div class='col-md-4'>
+          <div class='col-md-6'>
             <%= g.collection_select :visitors_id, Team.order(:name), :id, :name, include_blank: true %>
           </div>
         </row>
-      </div>
 
-      <div class="form-group">
         <row class='form-control'>
-          <div class='col-md-4'>
+          <div class='col-md-6'>
             <%= g.label :home_id, "Home" %>
           </div>
-          <div class='col-md-4'>
+          <div class='col-md-6'>
             <%= g.collection_select :home_id, Team.order(:name), :id, :name, include_blank: true %>
           </div>
         </row>
       </div>
 
-      <div class="form-group">
-        <%= g.date_field :date, class: 'form-control'%>
-      </div>
 
-      <div class="form-group">
+      <div class="col-md-4 form-group">
+        <%= g.date_field :date, class: 'form-control'%>
         <%= g.time_field :time, class: 'form-control'%>
       </div>
 
 
-      <div class="form-group">
-        <row class='form-control'>
-          <div class='col-md-4'>
-            <%= g.label :location_id, "Location" %>
-          </div>
-          <div class='col-md-4'>
-            <%= g.collection_select :location_id, Location.order(:name), :id, :name, include_blank: true %>
-          </div>
-        </row>
+      <div class='col-md-4'>
+        <div class="form-group">
+          <row class='form-control'>
+            <div class='col-md-6'>
+              <%= g.label :location_id, "Location" %>
+            </div>
+            <div class='col-md-6'>
+              <%= g.collection_select :location_id, Location.order(:name), :id, :name, include_blank: true %>
+            </div>
+          </row>
+        </div>
       </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <div class='col-md-4'>
+          <%= g.submit "Save", class: 'btn btn-success' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
-
-
-
-
-      <%= g.submit "Save", class: 'btn btn-success' %>
-    <% end %>
-  </div>
+</div>
