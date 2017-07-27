@@ -51,7 +51,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     @game.update(game_score_params)
-    unless @game.winner.nil? || @game.loser.nil?
+    if @game.winner.nil? || @game.loser.nil?
       @game.determine_winner_loser
     end
 
