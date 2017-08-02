@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
 
   def manager
     self.rosters.find_by(user_id: self.id, manager: true)
+
   end
 
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :alerts
   get 'games/decide_game_view' => 'games#decide_game_view', as: :decide_game_view
   resources :games
   resources :game_hitting_stats

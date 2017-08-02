@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170624213757) do
+ActiveRecord::Schema.define(version: 20170802004602) do
+
+  create_table "alerts", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "alerts", ["user_id"], name: "index_alerts_on_user_id"
 
   create_table "game_hitting_stats", force: :cascade do |t|
     t.integer  "player_id"
