@@ -1,0 +1,56 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+
+ready = ->
+  # $(".close").click ->
+  #   $(event.target.parentElement).hide("slow")
+  #
+  #
+  # # if $.cookie('alerts') == 'true'
+  # #   $('#alertBox').show()
+  # # else
+  #   $('#alertBox').hide()
+  alerts = localStorage.getItem('alerts') or 'false'
+  console.log localStorage.getItem('alerts')
+  console.log 'initial Alerts: '
+  console.log alerts
+  if alerts != 'false'
+    $('#alertBox').css display: 'block'
+    console.log 'display should be block'
+  else
+    $('#alertBox').css display: 'none'
+    console.log 'display should be none'
+  # $('#alertBox').show()
+  console.log alerts
+
+
+
+  $("#alerts").click ->
+      #$("#alertBox").toggle("slow")
+      if $('#alertBox').css('display') != 'none'
+
+        $('#alertBox').css display: 'none'
+        console.log 'display is now none'
+        localStorage.setItem('alerts', 'false')
+      else
+        $('#alertBox').css display: 'block'
+        console.log 'display is now visible'
+        localStorage.setItem('alerts', 'true')
+
+      #isVisible = $('#alertBox').is(':visible')
+
+      console.log 'isVisible: '
+      console.log localStorage.getItem('alerts')
+
+
+      return
+
+  return
+
+
+
+
+
+$(document).on('turbolinks:load', ready)

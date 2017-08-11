@@ -52,6 +52,7 @@ def create
         alerts = alerts + "From: " + a.user.first_name + "-" + a.content + "\n"
       end
       flash[:alert] = alerts
+      puts flash[:alert]
       render template: "api/texts/post_success.xml.erb", layout: false, content_type: "application/xml"
       return
 
