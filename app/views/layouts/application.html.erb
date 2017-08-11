@@ -15,6 +15,10 @@
           <li><%= link_to "About", welcome_about_path %></li>
           <li><%= link_to "Keep Score", "http://localhost:3001" %></li>
           <li><%= link_to "Schedule", games_path %></li>
+          <% if Alert.active %>
+            <li><button type='button' class='btn btn-info btn-lg' id='alerts'><span class='glyphicon glyphicon-alert'></span>Alerts</button>
+            </li>
+          <% end %>
 
                 <div class="pull-right user-info">
                   <% if current_user %>
@@ -40,24 +44,38 @@
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <%= flash[:error] %>
             </div>
+
         <% elsif flash[:alert] %>
+
             <div class ="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <%= flash[:alert] %>
             </div>
         <% end %>
+
+
       </div>
-      <div class="row">
-        <div class="col-md-2">
-          <%= image_tag("CABL-BRICK-WALLA1.png", :size => "313x313") %>
-        </div>
-        <div class="col-md-10">
+
+      <% if Alert.active %>
+          <div class="flash" id='alertBox'>
+              <div class ="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <% Alert.active.each do |a| %>
+                    <p>From <%= a.user.first_name%>: <%= a.content %></p>
+                  <% end %>
+              </div>
+          </div>
+      <% end %>
+
+
+        <div class='row'>
+          <div class="col-xs-12mod col-sm-4 col-md-4 main-div dirt">
+            <%= image_tag("CABL-BRICK-WALLA1.png", class: "cabl-img") %>
+          </div>
 
           <%= yield %>
-
         </div>
 
-      </div>
 
   </div>
 

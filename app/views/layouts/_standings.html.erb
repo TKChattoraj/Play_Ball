@@ -1,0 +1,39 @@
+<% standings %>
+
+<div class='col-xs-12mod col-sm-8mod col-md-8mod main-div grass'>
+
+  <div class='col-xs-12 col-sm-12 col-md-4'>
+    <table class='table table-striped table-responsive'>
+      <thead>
+        <tr>
+          <th></th>
+          <th><h5>W</h5></th>
+          <th><h5>L</h5></th>
+          <th><h5>Pct.</h5></th>
+          <th><h5>GB</h5></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @teams.each do |t| %>
+          <tr>
+            <td><%= link_to t.name, t %></td>
+            <td><%= t.wins %></td>
+            <td><%= t.losses %></td>
+
+            <% if t.winning_percentage %>
+              <td><%= t.winning_percentage %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+
+            <% if t.games_back %>
+              <td><%= t.games_back %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

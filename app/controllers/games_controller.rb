@@ -2,8 +2,10 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
-  end
+    @games_by_date = @games.group_by(&:date)
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
 
+  end
 
   def new
     @game = Game.new
@@ -45,10 +47,11 @@ class GamesController < ApplicationController
 
 
   def update
+    puts("in update")
     @game = Game.find(params[:id])
 
     @game.update(game_score_params)
-    unless @game.winner.nil? || @game.loser.nil?
+    if @game.winner.nil? || @game.loser.nil?
       @game.determine_winner_loser
     end
 
@@ -91,7 +94,7 @@ class GamesController < ApplicationController
 
       hitting_stats.save
     end
-
+    puts("updated hitting")
     pitching = pitching_params
     if pitching
       pitching.each do |key, value|
@@ -119,6 +122,7 @@ class GamesController < ApplicationController
       end
     end
     @game.save
+    puts("updated pitching")
     @players.each do |player|
       calculate_hitting_totals(player)
 
@@ -127,7 +131,7 @@ class GamesController < ApplicationController
       end
 
     end
-
+    puts("redirecting to team")
     redirect_to team_path(@team)
 
 

@@ -41,3 +41,221 @@
     <% end %>
   <% end %>
 <% end %>
+
+
+
+<row class='col-md-12 left-margin-10px'>
+  <div class='col-md-6 stats-table'>
+    <div class='col-md-2'>Name</div>
+    <div class='col-md-10 stats-table'>
+      <div class="col-md-1">
+        <p>AB</p>
+      </div>
+      <div class="col-md-1">
+        <p>PA</p>
+      </div>
+      <div class="col-md-1">
+        <p>1b</p>
+      </div>
+      <div class="col-md-1">
+        <p>2b</p>
+      </div>
+      <div class="col-md-1">
+        <p>3b</p>
+      </div>
+      <div class="col-md-1">
+        <p>Hr</p>
+      </div>
+      <div class="col-md-1">
+        <p>BB</p>
+      </div>
+      <div class="col-md-1">
+        <p>E</p>
+      </div>
+      <div class="col-md-1">
+        <p>FC</p>
+      </div>
+      <div class="col-md-1">
+        <p>HB</p>
+      </div>
+      <div class="col-md-1">
+        <p>SB</p>
+      </div>
+      <div class="col-md-1">
+        <p>RBI</p>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-6 stats-table'>
+    <div class='col-md-12 stats-table'>
+
+      <div class="col-md-1">
+        <p>R</p>
+      </div>
+      <div class="col-md-1">
+        <p>ER</p>
+      </div>
+      <div class="col-md-1">
+        <p>SAC</p>
+      </div>
+      <div class="col-md-1">
+        <p>K</p>
+      </div>
+    </div>
+  </div>
+
+</row>
+
+<!-- <row class='col-md-12'> -->
+<% @players.each_with_index do  |player, i| %>
+<%= fields_for 'players[]', player do |p| %>
+<!-- -->
+<% player_hitting_stats = player.game_hitting_stats.find{|hs| hs.game_id == @game.id} %>
+<% if player_hitting_stats %>
+<%= p.hidden_field(:id) %>
+<%= fields_for 'game_hitting_stats[]', player_hitting_stats do |f| %>
+  <row class='col-md-12 left-margin-10px'>
+    <div class='col-md-6 stats-table'>
+      <div class='col-md-2'> <%= player.last_name %> </div>
+      <div class='col-md-10 stats-table'>
+            <%= f.number_field :ab, min: 0, class: 'col-md-1 stats-input' %>
+            <%= f.number_field :pa, min: 0, class: 'col-md-1 stats-input'%>
+            <%= f.number_field :single, min: 0, class: 'col-md-1 stats-input' %>
+            <%= f.number_field :double, min: 0, class: 'col-md-1 stats-input'%>
+            <%= f.number_field :triple, min: 0, class: 'col-md-1 stats-input' %>
+            <%= f.number_field :hr, min: 0, class: 'col-md-1 stats-input'%>
+            <%= f.number_field :bb, min: 0, class: 'col-md-1 stats-input' %>
+            <%= f.number_field :error, min: 0, class: 'col-md-1 stats-input'%>
+            <%= f.number_field :fc, min: 0, class: 'col-md-1 stats-input' %>
+            <%= f.number_field :hb, min: 0, class: 'col-md-1 stats-input'%>
+            <%= f.number_field :sb, min: 0, class: 'col-md-1 stats-input' %>
+            <%= f.number_field :rbi, min: 0, class: 'col-md-1 stats-input'%>
+      </div>
+    </div>
+    <div class='col-md-6 stats-table'>
+      <div class='col-md-12 stats-table'>
+
+            <%= f.number_field :r, min: 0, class: 'col-md-1 stats-input' %>
+            <%= f.number_field :earned_run, min: 0, class: 'col-md-1 stats-input'%>
+            <%= f.number_field :sac, min: 0, class: 'col-md-1 stats-input' %>
+            <%= f.number_field :k, min: 0, class: 'col-md-1 stats-input'%>
+      </div>
+    </div>
+  </row>
+<% end %>
+<% end %>
+
+<% end %>
+<% end %>
+
+
+
+<row class='col-md-12 left-margin-10px'>
+</row>
+<row class='col-md-12 left-margin-10px'>
+<div class='col-md-6 stats-table'>
+<div class='col-md-2'>Name</div>
+<div class='col-md-10 stats-table'>
+
+  <div class="col-md-1">
+    <p>Retired</p>
+  </div>
+  <div class="col-md-1">
+    <p>R</p>
+  </div>
+  <div class="col-md-1">
+    <p>ER</p>
+  </div>
+  <div class="col-md-1">
+    <p>SV</p>
+  </div>
+  <div class="col-md-1">
+    <p>CG</p>
+  </div>
+  <div class="col-md-1">
+    <p>BF</p>
+  </div>
+  <div class="col-md-1">
+    <p>BB</p>
+  </div>
+  <div class="col-md-1">
+    <p>H</p>
+  </div>
+  <div class="col-md-1">
+    <p>1B<p>
+  </div>
+  <div class="col-md-1">
+    <p>2B</p>
+  </div>
+  <div class="col-md-1">
+    <p>3B</p>
+  </div>
+  <div class="col-md-1">
+    <p>HR</p>
+  </div>
+</div>
+</div>
+<div class="col-md-6 stats-table">
+<div class="col-md-12 stats-table">
+
+  <div class="col-md-1">
+    <p>K</p>
+  </div>
+  <div class="col-md-1">
+    <p>WP</p>
+  </div>
+  <div class="col-md-1">
+    <p>HB</p>
+  </div>
+  <div class="col-md-1">
+    <p>BK</p>
+  </div>
+  <div class="col-md-1">
+    <p>SB</p>
+  </div>
+</div>
+</div>
+</row>
+
+<% @players.each_with_index do  |player, i| %>
+<% if player.positions.include?(Position.find(1)) %>
+<%= fields_for 'players[]', player do |p| %>
+<% player_pitching_stats = player.game_pitching_stats.find{|ps| ps.game_id == @game.id} %>
+<%= p.hidden_field(:id) %>
+
+<% if player_pitching_stats %>
+  <%= fields_for 'game_pitching_stats[]', player_pitching_stats do |f| %>
+    <row class='col-md-12 left-margin-10px'>
+      <div class='col-md-6 stats-table'>
+        <div class='col-md-2'> <%= player.last_name %> </div>
+        <div class='col-md-10 stats-table'>
+              <%= f.number_field :batters_retired, min: 0, class: 'col-md-1' %>
+              <%= f.number_field :r, min: 0, class: 'col-md-1'%>
+              <%= f.number_field :er, min: 0, class: 'col-md-1' %>
+              <%= f.number_field :sv, min: 0, class: 'col-md-1' %>
+              <%= f.number_field :cg, min: 0, class: 'col-md-1'%>
+              <%= f.number_field :bf, min: 0, class: 'col-md-1'%>
+              <%= f.number_field :bb, min: 0, class: 'col-md-1' %>
+              <%= f.number_field :h, min: 0, class: 'col-md-1'%>
+              <%= f.number_field :single, min: 0, class: 'col-md-1' %>
+              <%= f.number_field :double, min: 0, class: 'col-md-1'%>
+              <%= f.number_field :triple, min: 0, class: 'col-md-1' %>
+              <%= f.number_field :hr, min: 0, class: 'col-md-1'%>
+        </div>
+      </div>
+      <div class='col-md-6 stats-table'>
+        <div class='col-md-12 stats-table'>
+              <%= f.number_field :k, min: 0, class: 'col-md-1' %>
+              <%= f.number_field :wp, min: 0, class: 'col-md-1'%>
+              <%= f.number_field :hb, min: 0, class: 'col-md-1'%>
+              <%= f.number_field :bk, min: 0, class: 'col-md-1' %>
+              <%= f.number_field :sb, min: 0, class: 'col-md-1'%>
+        </div>
+      </div>
+    </row>
+  <% end %>
+<% end %>
+
+<% end %>
+<% end %>
+<% end %>

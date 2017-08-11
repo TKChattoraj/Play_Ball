@@ -20,7 +20,7 @@ class NotesController < ApplicationController
       flash[:notice] = "Note Created!"
       redirect_to team_path(current_user.current_team.id)
     else
-      flash[:error] = "Error in creating the Topic.  Try Again."
+      flash[:error] = "Error in creating the Note.  Try Again."
       render :new
     end
   end

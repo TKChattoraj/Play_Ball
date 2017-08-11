@@ -36,15 +36,23 @@ def create
   # rescue
   #   # ...respond with unauthorized
   # end
+  puts @user.last_name
 
-  if @user and @user.manager # manager method defined in User model
-    @note = Note.new
-    @note.content = params[:Body]
-    @note.user_id = @user.id
-    @note.team_id = @user.current_team.id
 
-    if @note.save
+  #if @user and @user.manager # manager method defined in User model
+  if @user
+    @alert = Alert.new
+    @alert.content = params[:Body]
+    @alert.user_id = @user.id
+    @active_alerts = Alert.active
 
+    if @alert.save
+      alerts = ""
+      @active_alerts.each do |a|
+        alerts = alerts + "From: " + a.user.first_name + "-" + a.content + "\n"
+      end
+      flash[:alert] = alerts
+      puts flash[:alert]
       render template: "api/texts/post_success.xml.erb", layout: false, content_type: "application/xml"
       return
 

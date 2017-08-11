@@ -1,6 +1,11 @@
-<h3 class="left-margin-10px"><%= "#{@team.name}" %></h3>
 
-<div class="row left-margin-10px">
+<%= render partial: 'layouts/standings' %>
+
+<div class='col-xs-12mod col-sm-12m col-md-12mod main-div grass'>
+<div class='col-md-12 left-margin-10px stats-table'>
+  <h3 class="left-margin-10px"><%= "#{@team.name}" %></h3>
+
+
   <div class="row left-margin-10px">
     <div class="col-md-12">
       <h4 class="stats-heading">Notes:</h4>
@@ -9,338 +14,137 @@
       <% end %>
     </div>
   </div>
-
-
-<div class="row left-margin-10px">
-  <div class="col-md-2">
-    <h4 class="stats-heading">Hitting:<h4>
-  </div>
-  <div class="col-md-10">
-    <div class="col-md-6 stats-table">
-      <div class="col-md-1">
-        <p>G</p>
-      </div>
-      <div class="col-md-1">
-        <p>PA</p>
-      </div>
-      <div class="col-md-1">
-        <p>AB</p>
-      </div>
-      <div class="col-md-1">
-        <p>H</p>
-      </div>
-      <div class="col-md-1">
-        <p>BB</p>
-      </div>
-      <div class="col-md-1">
-        <p>1B</p>
-      </div>
-      <div class="col-md-1">
-        <p>2B</p>
-      </div>
-      <div class="col-md-1">
-        <p>3B</p>
-      </div>
-      <div class="col-md-1">
-        <p>HR</p>
-      </div>
-      <div class="col-md-1">
-        <p>K</p>
-      </div>
-      <div class="col-md-1">
-        <p>SF</p>
-      </div>
-      <div class="col-md-1">
-        <p>ERR</p>
-      </div>
-    </div>
-    <div class="col-md-6 stats-table">
-      <div class="col-md-1">
-        <p>HB</p>
-      </div>
-      <div class="col-md-1">
-        <p>RBI</p>
-      </div>
-      <div class="col-md-1">
-        <p>R</p>
-      </div>
-      <div class="col-md-1">
-        <p>SB</p>
-      </div>
-      <div class="col-md-1">
-        <p>CS</p>
-      </div>
-      <div class="col-md-1">
-        <p>AVE</p>
-      </div>
-      <div class="col-md-1">
-        <p>OBP</p>
-      </div>
-      <div class="col-md-1">
-        <p>SLG</p>
-      </div>
-    </div>
-  </div>
-
-</div>
-<% @players.each do |p| %>
-  <div class= "row left-margin-10px">
-
-    <div class="col-md-2">
-      <p><%= link_to "#{p.last_name}, #{p.first_name}", p %> </p>
-    </div>
-    <div class="col-md-10">
-      <div class="col-md-6 stats-table">
-        <div class="col-md-1">
-          <p><%= p.hitting_total.g %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.pa %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.ab %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.h %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.bb %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.b1 %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.b2 %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.b3 %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.hr %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.k %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.sf %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.err %></p>
-        </div>
-      </div>
-      <div class="col-md-6 stats-table">
-        <div class="col-md-1">
-          <p><%= p.hitting_total.hb %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.rbi %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.r %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.sb%></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.hitting_total.cs %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= number_with_precision(p.hitting_total.ave, :precision =>3) %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= number_with_precision(p.hitting_total.obp, :precision => 3) %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= number_with_precision(p.hitting_total.slg, :precision => 3) %></p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-<% end %>
-
-
-
-<div class="row left-margin-10px">
-  <div class="col-md-2">
-    <h4 class="stats-heading">Pitching:<h4>
-  </div>
-  <div class="col-md-10">
-    <div class="col-md-6 stats-table">
-      <div class="col-md-1">
-        <p>W</p>
-      </div>
-      <div class="col-md-1">
-        <p>L</p>
-      </div>
-      <div class="col-md-1">
-        <p>IP</p>
-      </div>
-      <div class="col-md-1">
-        <p>R</p>
-      </div>
-      <div class="col-md-1">
-        <p>ER</p>
-      </div>
-      <div class="col-md-1">
-        <p>G</p>
-      </div>
-      <div class="col-md-1">
-        <p>SV</p>
-      </div>
-      <div class="col-md-1">
-        <p>CG</p>
-      </div>
-      <div class="col-md-1">
-        <p>BF</p>
-      </div>
-      <div class="col-md-1">
-        <p>BB</p>
-      </div>
-      <div class="col-md-1">
-        <p>H</p>
-      </div>
-      <div class="col-md-1">
-        <p>1B</p>
-      </div>
-    </div>
-    <div class="col-md-6 stats-table">
-      <div class="col-md-1">
-        <p>2B</p>
-      </div>
-      <div class="col-md-1">
-        <p>3B</p>
-      </div>
-      <div class="col-md-1">
-        <p>HR</p>
-      </div>
-      <div class="col-md-1">
-        <p>K</p>
-      </div>
-      <div class="col-md-1">
-        <p>WP</p>
-      </div>
-      <div class="col-md-1">
-        <p>HB</p>
-      </div>
-      <div class="col-md-1">
-        <p>BK</p>
-      </div>
-      <div class="col-md-1">
-        <p>SB</p>
-      </div>
-      <div class="col-md-1">
-        <p>CS</p>
-      </div>
-      <div class="col-md-1">
-        <p>ERA</p>
-      </div>
-      <div class="col-md-1">
-        <p>Retired</p>
-      </div>
-    </div>
-  </div>
-
 </div>
 
-<% @players.each do |p| %>
- <% if p.positions.include?(Position.find(1)) %>
-  <div class= "row left-margin-10px">
-
-    <div class="col-md-2">
-      <p><%= link_to "#{p.last_name}, #{p.first_name}", p %> </p>
-    </div>
-    <div class="col-md-10">
-      <div class="col-md-6 stats-table">
-        <div class="col-md-1">
-          <p><%= p.pitching_total.w %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.l %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.ip %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.r %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.er %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.g%></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.sv%></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.cg %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.bf %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.bb %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.h %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.b1 %></p>
-        </div>
-      </div>
-      <div class="col-md-6 stats-table">
-
-        <div class="col-md-1">
-          <p><%= p.pitching_total.b2 %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.b3 %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.hr %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.k %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.wp%></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.hb %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.bk %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.sb %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.cs %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= number_with_precision(p.pitching_total.era, :precision =>3) %></p>
-        </div>
-        <div class="col-md-1">
-          <p><%= p.pitching_total.batters_retired %></p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <% end %>
-<% end %>
+<div class='col-md-12 left-margin-10px'>
+  <table class="table table-striped table-responsive stas-table">
+    <thead>
+      <tr>
+            <th>Hitting</th>
+            <th>G</th>
+            <th>PA</th>
+            <th>AB</th>
+            <th>H</th>
+            <th>1b</th>
+            <th>2b</th>
+            <th>3b</th>
+            <th>Hr</th>
+            <th>BB</th>
+            <th>E</th>
+            <th>FC</th>
+            <th>HB</th>
+            <th>SB</th>
+            <th>RBI</th>
+            <th>R</th>
+            <th>ER</th>
+            <th>SAC</th>
+            <th>K</th>
+            <th>AVE.</th>
+            <th>OBP</th>
+            <th>SLG</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @players.each do |p| %>
+      <tr>
+        <td><p><%= link_to "#{p.last_name}, #{p.first_name}", p %></p></td>
+        <td><%= p.hitting_total.g %></td>
+        <td><%= p.hitting_total.pa %></td>
+        <td><%= p.hitting_total.ab %></td>
+        <td><%= p.hitting_total.h %></td>
+        <td><%= p.hitting_total.b1 %></td>
+        <td><%= p.hitting_total.b2 %></td>
+        <td><%= p.hitting_total.b3 %></td>
+        <td><%= p.hitting_total.hr %></td>
+        <td><%= p.hitting_total.bb %></td>
+        <td><%= p.hitting_total.err %></td>
+        <td>-</td>
+        <td><%= p.hitting_total.hb %></td>
+        <td><%= p.hitting_total.sb%></td>
+        <td><%= p.hitting_total.rbi %></td>
+        <td><%= p.hitting_total.r %></td>
+        <td>-</td>
+        <td><%= p.hitting_total.sf %></td>
+        <td><%= p.hitting_total.k %></td>
+        <td><%= number_with_precision(p.hitting_total.ave, :precision =>3) %></td>
+        <td><%= number_with_precision(p.hitting_total.obp, :precision => 3) %></td>
+        <td><%= number_with_precision(p.hitting_total.slg, :precision => 3) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>
 
+<div class='col-md-12 left-margin-10px stats-table'>
+  <table class='table table-striped table-responsive'>
+    <thead>
+      <tr>
+          <th>Pitching</th>
+          <th>ERA</th>
+          <th>G</th>
+          <th>IP</th>
+          <th>BF</th>
+          <th>Ret</th>
+          <th>R</th>
+          <th>ER</th>
+          <th>H</th>
+          <th>1B</th>
+          <th>2B</th>
+          <th>3B</th>
+          <th>HR</th>
+          <th>K</th>
+          <th>BB</th>
+          <th>WP</th>
+          <th>HB</th>
+          <th>BK</th>
+          <th>SB</th>
+          <th>CS</th>
+          <th>W</th>
+          <th>L</th>
+          <th>SV</th>
+          <th>CG</th>
+      </tr>
+    </thead>
 
+    <tbody>
+      <% @players.each do |p| %>
+       <% if p.pitcher? %>
+          <tr>
+            <td><%= link_to "#{p.last_name}, #{p.first_name}", p %></td>
+            <td><%= number_with_precision(p.pitching_total.era, :precision =>3) %></td>
+            <td><%= p.pitching_total.g%></td>
+            <td><%= p.pitching_total.ip %></td>
+            <td><%= p.pitching_total.bf %></td>
+            <td><%= p.pitching_total.batters_retired %></td>
+            <td><%= p.pitching_total.r %></td>
+            <td><%= p.pitching_total.er %></td>
 
+            <td><%= p.pitching_total.h %></td>
+            <td><%= p.pitching_total.b1 %></td>
+            <td><%= p.pitching_total.b2 %></td>
+            <td><%= p.pitching_total.b3 %></td>
+            <td><%= p.pitching_total.hr %></td>
+            <td><%= p.pitching_total.k %></td>
+            <td><%= p.pitching_total.bb %></td>
 
+            <td><%= p.pitching_total.wp%></td>
+            <td><%= p.pitching_total.hb %></td>
+            <td><%= p.pitching_total.bk %></td>
+            <td><%= p.pitching_total.sb %></td>
+            <td><%= p.pitching_total.cs %></td>
 
+            <td><%= p.pitching_total.w %></td>
+            <td><%= p.pitching_total.l %></td>
 
-
-
-
-
+            <td><%= p.pitching_total.sv%></td>
+            <td><%= p.pitching_total.cg %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 
 <%= render partial: 'teams/team_tabs' %>
+</div>
