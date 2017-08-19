@@ -1,4 +1,4 @@
-class Player < ActiveRecord::Base
+class Player < ApplicationRecord
   belongs_to :team
   has_one :hitting_total
   has_one :pitching_total

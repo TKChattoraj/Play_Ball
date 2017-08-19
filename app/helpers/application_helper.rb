@@ -17,6 +17,9 @@ module ApplicationHelper
     Team.determine_games_back
   end
 
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
 
 
 end

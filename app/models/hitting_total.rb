@@ -1,4 +1,4 @@
-class HittingTotal < ActiveRecord::Base
+class HittingTotal < ApplicationRecord
   belongs_to :player
 
   def set_initial_totals
