@@ -1,4 +1,4 @@
-class CreatePitchingTotals < ActiveRecord::Migration
+class CreatePitchingTotals < ActiveRecord::Migration[5.1]
   def change
     create_table :pitching_totals do |t|
       t.integer :w
@@ -27,7 +27,7 @@ class CreatePitchingTotals < ActiveRecord::Migration
       t.decimal :era
 
       t.references :player, index: true
-      
+
       t.timestamps null: false
     end
   end

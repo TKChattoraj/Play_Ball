@@ -1,4 +1,4 @@
-class CreateGamePitchingStats < ActiveRecord::Migration
+class CreateGamePitchingStats < ActiveRecord::Migration[5.1]
   def change
     create_table :game_pitching_stats do |t|
       t.references :player

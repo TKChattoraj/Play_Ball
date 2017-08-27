@@ -1,4 +1,4 @@
-class FixPitchingCol < ActiveRecord::Migration
+class FixPitchingCol < ActiveRecord::Migration[5.1]
 
     def change
       rename_column :game_pitching_stats, :full_innings, :batters_retired

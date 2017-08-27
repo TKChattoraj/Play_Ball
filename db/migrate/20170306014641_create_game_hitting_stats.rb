@@ -1,4 +1,4 @@
-class CreateGameHittingStats < ActiveRecord::Migration
+class CreateGameHittingStats < ActiveRecord::Migration[5.1]
   def change
     create_table :game_hitting_stats do |t|
       t.references :player
@@ -23,7 +23,7 @@ class CreateGameHittingStats < ActiveRecord::Migration
       t.integer :earned_run
       t.integer :sac
       t.integer :k
-      
+
       t.timestamps null: false
     end
   end

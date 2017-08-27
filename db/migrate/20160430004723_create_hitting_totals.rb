@@ -1,4 +1,4 @@
-class CreateHittingTotals < ActiveRecord::Migration
+class CreateHittingTotals < ActiveRecord::Migration[5.1]
   def change
     create_table :hitting_totals do |t|
         t.integer :g
