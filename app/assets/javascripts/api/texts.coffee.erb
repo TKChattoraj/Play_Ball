@@ -4,30 +4,26 @@
 
 
 ready = ->
-  # $(".close").click ->
-  #   $(event.target.parentElement).hide("slow")
-  #
-  #
-  # # if $.cookie('alerts') == 'true'
-  # #   $('#alertBox').show()
-  # # else
-  #   $('#alertBox').hide()
-  alerts = localStorage.getItem('alerts') or 'false'
-  console.log localStorage.getItem('alerts')
-  console.log 'initial Alerts: '
-  console.log alerts
-  if alerts != 'false'
-    $('#alertBox').css display: 'block'
-    console.log 'display should be block'
+
+  if $('#alerts').css('display') == 'block'
+    alerts = localStorage.getItem('alerts') or 'false'
+    console.log localStorage.getItem('alerts')
+    console.log 'initial Alerts: '
+    console.log alerts
+    if alerts != 'false'
+      $('#alertBox').css display: 'block'
+      console.log 'display should be block'
+    else
+      $('#alertBox').css display: 'none'
+      console.log 'display should be none'
+    # $('#alertBox').show()
+    console.log alerts
   else
     $('#alertBox').css display: 'none'
-    console.log 'display should be none'
-  # $('#alertBox').show()
-  console.log alerts
 
 
 
-  $("#alerts").click ->
+  $("#alerts, #alertListClose").click ->
       #$("#alertBox").toggle("slow")
       if $('#alertBox').css('display') != 'none'
 
@@ -38,8 +34,6 @@ ready = ->
         $('#alertBox').css display: 'block'
         console.log 'display is now visible'
         localStorage.setItem('alerts', 'true')
-
-      #isVisible = $('#alertBox').is(':visible')
 
       console.log 'isVisible: '
       console.log localStorage.getItem('alerts')

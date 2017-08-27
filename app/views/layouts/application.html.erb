@@ -13,22 +13,23 @@
         <ul class="nav nav-tabs">
           <li><%= link_to "Home", welcome_index_path %></li>
           <li><%= link_to "About", welcome_about_path %></li>
-          <li><%= link_to "Keep Score", "http://localhost:3001" %></li>
+          <!-- <li><%= link_to "Keep Score", "http://localhost:3001" %></li> -->
+          <li id='keep-score'><%= link_to "Keep Score", "" %></li>
           <li><%= link_to "Schedule", games_path %></li>
-          <% if Alert.active %>
-            <li><button type='button' class='btn btn-info btn-lg' id='alerts'><span class='glyphicon glyphicon-alert'></span>Alerts</button>
-            </li>
+          <li id='sendTxt'><%= link_to "Send a Text Alert!", ""%></li>
+
+          <li><button type='button' class='btn btn-info btn-lg alertTab-padding' style='display: <%=show_alerts?%>' id='alerts'><span class='glyphicon glyphicon-alert'></span>Alerts</button>
+          </li>
+
+          <div class="pull-right user-info">
+            <% if current_user %>
+                 At Bat: <strong><%= current_user.first_name %></strong>
+                 <%= link_to "Sign Out", session_path(current_user), method: :delete %>
+
+              <% else %>
+                 <%= link_to "Register", new_user_path %> - <%= link_to "Sign In", new_session_path %>
           <% end %>
-
-                <div class="pull-right user-info">
-                  <% if current_user %>
-                       At Bat: <strong><%= current_user.first_name %></strong>
-                       <%= link_to "Sign Out", session_path(current_user), method: :delete %>
-
-                    <% else %>
-                       <%= link_to "Register", new_user_path %> - <%= link_to "Sign In", new_session_path %>
-                <% end %>
-                </div>
+          </div>
 
 
         </ul>
@@ -56,16 +57,15 @@
 
       </div>
 
-      <% if Alert.active %>
-          <div class="flash" id='alertBox'>
-              <div class ="alert alert-warning alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+          <div class="flash" style='display: <%=show_alerts?%>' id='alertBox'>
+              <div class = "alert alert-warning alert-dismissible " id='alertList'>
+                  <button type="button" class="close" data-hide="alert" id='alertListClose'>&times;</button>
                   <% Alert.active.each do |a| %>
                     <p>From <%= a.user.first_name%>: <%= a.content %></p>
                   <% end %>
               </div>
           </div>
-      <% end %>
 
 
         <div class='row'>
