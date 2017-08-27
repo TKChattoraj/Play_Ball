@@ -17,6 +17,28 @@ module ApplicationHelper
     Team.determine_games_back
   end
 
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
+
+  def show_alerts?
+    if Alert.active.any?
+      puts 'alerts active'
+      display = 'block'
+    else
+      display = 'none'
+      puts 'no active alerts'
+    end
+    display
+  end
+
+  def determine_alertBox_view
+    if Alert.active.any?
+      'display-alerts'
+    else
+      'do-not-display-alerts'
+    end
+  end
 
 
 end

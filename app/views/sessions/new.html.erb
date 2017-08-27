@@ -1,22 +1,25 @@
-<h2>Sign in</h2>
 
-<div class="row">
-  <div class="col-md-8">
-    <%= form_for :session, url: sessions_path do |f| %>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: "Enter email" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control', placeholder: "Enter password" %>
-      </div>
-      <div class= "form-group">
-        <%= f.label :remember_me, class: 'checkbox' do %>
-        Remember Me <%= f.check_box :remember_me, :style => "margin-left: 10px;" %>
+<div class='col-xs-12mod col-sm-8mod col-md-8mod main-div grass'>
+  <div class='col-xs-12 col-sm-12 col-md-4'>
+    <h2>Sign in</h2>
+
+    <div class="row">
+        <%= form_for :session, url: sessions_path do |f| %>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: "Sign in as 'sparky@anderson.com'" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control', placeholder: "use password 'hello_world'" %>
+          </div>
+          <div class= "form-group">
+            <%= f.label :remember_me, class: 'checkbox' do %>
+            Remember Me <%= f.check_box :remember_me, :style => "margin-left: 10px;" %>
+            <% end %>
+            <%= f.submit "Sign in", class: 'btn btn-success' %>
+          </div>
         <% end %>
-        <%= f.submit "Sign in", class: 'btn btn-success' %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>

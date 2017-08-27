@@ -1,4 +1,4 @@
-class Roster < ActiveRecord::Base
+class Roster < ApplicationRecord
   belongs_to :user
   belongs_to :team
 

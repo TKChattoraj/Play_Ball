@@ -6,10 +6,13 @@ class ApplicationController < ActionController::Base
 
 
 
-  
 
+  include ApplicationHelper
   include SessionsHelper
   include TeamsHelper
   include UsersHelper
   include WelcomeHelper
+
+
+
 end

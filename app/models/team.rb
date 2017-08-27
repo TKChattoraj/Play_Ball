@@ -1,4 +1,4 @@
-class Team < ActiveRecord::Base
+class Team < ApplicationRecord
   has_many :rosters
   has_many :users, :through => :rosters
   has_many :notes
@@ -37,7 +37,7 @@ class Team < ActiveRecord::Base
 
   end
 
-
+  
 
 
 

@@ -1,4 +1,4 @@
-class PitchingTotal < ActiveRecord::Base
+class PitchingTotal < ApplicationRecord
   belongs_to :player
 
 

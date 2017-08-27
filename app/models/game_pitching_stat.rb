@@ -1,4 +1,4 @@
-class GamePitchingStat < ActiveRecord::Base
+class GamePitchingStat < ApplicationRecord
   belongs_to :player
   belongs_to :game
 

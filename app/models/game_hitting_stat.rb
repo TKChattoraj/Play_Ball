@@ -1,4 +1,4 @@
-class GameHittingStat < ActiveRecord::Base
+class GameHittingStat < ApplicationRecord
   belongs_to :player
   belongs_to :game
 end

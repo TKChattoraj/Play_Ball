@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:session][:password])
       create_session user
-      flash[:notice] = "Welcome, #{user.first_name}!"
+      flash[:notice] = "Welcome, #{user.first_name}!  As a manager, you can send text alerts to this site.  Try it out.  Text a message to 513-952-8704.  Example...'Reds are rained out.  Go back to sleep!'"
       redirect_to root_path
     else
       flash[:error] = 'Invalid email/password combination'

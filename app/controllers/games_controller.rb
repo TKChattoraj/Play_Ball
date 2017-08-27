@@ -1,5 +1,7 @@
 class GamesController < ApplicationController
 
+
+
   def index
     @games = Game.all
     @games_by_date = @games.group_by(&:date)
@@ -30,6 +32,8 @@ class GamesController < ApplicationController
   def edit
     @game = Game.find(params[:id])
     @team = applicable_team
+    puts "@team: "
+    puts @team
     unless (@team.id == @game.home_id || @team.id == @game.visitors_id)
       flash[:notice] = "Game not finished and you aren't athorized to update this game!"
       redirect_to games_path
@@ -154,6 +158,11 @@ class GamesController < ApplicationController
   end
 
 private
+
+
+
+
+
   def hitting_params
     hitting_hash = {}
     hitting_stats_hash = params['game_hitting_stats']
