@@ -28,6 +28,7 @@ before_action :set_access_control_headers
   def create
 
     @cell = params[:From].slice!(-10, 10)
+    puts @cell
 
     # For real, we want the method to determine whether the phone texitng the message is from an authorized user--manager.  For demonstration, however, the @user is going to be designated as Sparky
 
