@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'redis'
+
 
 
 # Use ActiveModel has_secure_password
@@ -48,6 +48,7 @@ gem 'redis'
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'redis', '~>4.0.0'
 end
 
 group :test do
