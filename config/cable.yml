@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url:  redis://redistogo:9ce5489d8bb3dd89dd6e90a767b657ff@angelfish.redistogo.com:11904/
   channel_prefix: play_ball_production
