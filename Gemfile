@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'em-hiredis'
-gem 'redis', '~>4.0'
+gem 'redis', '3.2'
 
 
 # Use ActiveModel has_secure_password
