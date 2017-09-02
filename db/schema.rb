@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20170802004602) do
     t.integer "k"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_hitting_stats_on_game_id"
+    t.index ["player_id"], name: "index_game_hitting_stats_on_player_id"
   end
 
   create_table "game_pitching_stats", force: :cascade do |t|
@@ -68,6 +70,8 @@ ActiveRecord::Schema.define(version: 20170802004602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "cs"
+    t.index ["game_id"], name: "index_game_pitching_stats_on_game_id"
+    t.index ["player_id"], name: "index_game_pitching_stats_on_player_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -86,6 +90,11 @@ ActiveRecord::Schema.define(version: 20170802004602) do
     t.time "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["home_id"], name: "index_games_on_home_id"
+    t.index ["location_id"], name: "index_games_on_location_id"
+    t.index ["loser_id"], name: "index_games_on_loser_id"
+    t.index ["visitors_id"], name: "index_games_on_visitors_id"
+    t.index ["winner_id"], name: "index_games_on_winner_id"
   end
 
   create_table "hitting_totals", force: :cascade do |t|
