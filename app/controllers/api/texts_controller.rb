@@ -41,7 +41,7 @@ before_action :set_access_control_headers
     if @user
       @alert = Alert.new
       @alert.content = params[:Body]
-      @alert.user_id = current_user.id
+      @alert.user_id = @user.id
       @active_alerts = Alert.active
 
       if @alert.save
