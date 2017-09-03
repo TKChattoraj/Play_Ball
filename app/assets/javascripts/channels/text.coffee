@@ -12,5 +12,5 @@ App.text = App.cable.subscriptions.create "TextChannel",
     # $('#alerts2').addClass('display-alert-btn')
     # $('#alerts2').fadeIn(6000)
     $('#alerts').fadeIn(3000)
-    $('#alertList').append '<p>From ' + data.name + ': ' + data.content + '</p>'
+    $('#alertList').append '<p>' + data.content + '</p>'
     console.log data
