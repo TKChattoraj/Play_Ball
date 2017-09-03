@@ -62,7 +62,7 @@
               <div class = "alert alert-warning alert-dismissible " id='alertList'>
                   <button type="button" class="close" data-hide="alert" id='alertListClose'>&times;</button>
                   <% Alert.active.each do |a| %>
-                    <p>From <%= a.user.first_name%>: <%= a.content %></p>
+                    <p><%= a.content %></p>
                   <% end %>
               </div>
           </div>
