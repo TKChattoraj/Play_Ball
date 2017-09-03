@@ -243,7 +243,7 @@ hitting_total.save
 
 player = Player.new(
   first_name: "Don",
-  last_name: "Geullett",
+  last_name: "Gullett",
   birthdate: DateTime.new(2017, 01, 01),
   bats: 1,
   throws: 0,

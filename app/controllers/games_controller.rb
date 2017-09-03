@@ -145,7 +145,9 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     create_initial_game_stats(@game)
-    # puts @game.location
+    puts @game.location_id
+    puts @game.home_id
+
 
 
     if @game.save
@@ -153,7 +155,7 @@ class GamesController < ApplicationController
       redirect_to games_path
     else
       flash[:notice] = "Could Not Schedule a Game.  Try Again."
-      redirect_to new_games_path
+      redirect_to new_game_path
     end
   end
 
@@ -165,7 +167,7 @@ private
 
   def hitting_params
     hitting_hash = {}
-    hitting_stats_hash = params['game_hitting_stats']
+    hitting_stats_hash = params['game_hitting_stats'].permit!.to_h
     hitting_stats_hash.each do |key, value|
       individual_hitting = hitting_stats_hash[key].symbolize_keys.slice(:ab, :pa, :single, :double, :tripple, :hr, :bb, :error, :fc, :hb, :wp, :pb, :sb, :rbi, :r, :earned_run, :sac, :k)
       hitting_hash[key] = individual_hitting
@@ -177,7 +179,7 @@ private
 
   def pitching_params
     pitching_hash = {}
-    pitching_stats_hash = params['game_pitching_stats']
+    pitching_stats_hash = params['game_pitching_stats'].permit!.to_h
     if pitching_stats_hash
       pitching_stats_hash.each do |key, value|
         individual_pitching =
