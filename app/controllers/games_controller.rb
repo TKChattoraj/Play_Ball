@@ -16,24 +16,29 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(game_id)
+    @visitors = @game.visitors
+    @home = @game.home
+
+    @visitor_players = @visitors.players
+    @home_players = @home.players
+
+
   end
 
   def decide_game_view
     @game = Game.find(game_id)
 
-    # if @game.winner.nil? || @game.loser.nil?
-    #   flash[:notice] = "no winner/loser yet"
+    if ((@game.winner.nil? || @game.loser.nil?) && applicable_team)
       redirect_to edit_game_path(@game)
-    # else
-      # redirect_to @game
-    # end
+    else
+      redirect_to @game
+    end
   end
 
   def edit
     @game = Game.find(params[:id])
     @team = applicable_team
-    puts "@team: "
-    puts @team
+
     unless (@team.id == @game.home_id || @team.id == @game.visitors_id)
       flash[:notice] = "Game not finished and you aren't athorized to update this game!"
       redirect_to games_path
@@ -207,6 +212,12 @@ private
   def create_initial_game_stats(game)
     create_game_stats(game, game.home)
     create_game_stats(game, game.visitors)
+    game.home_runs = 0
+    game.home_hits = 0
+    game.home_errors = 0
+    game.visitor_runs = 0
+    game.visitor_hits = 0
+    game.visitor_errors = 0
   end
 
 
